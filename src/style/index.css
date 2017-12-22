@@ -55,7 +55,7 @@ header {
   position: relative;
   margin: 16px;
   background-color: #fafafa;
-  padding: 16px;
+  padding: 16px 16px 16px 32px;
   cursor: pointer;
   border-radius: 2px;
   color: rgba(0, 0, 0, 0.85);
@@ -66,7 +66,7 @@ header {
     left: 0;
     width: 0;
     height: 100%;
-    background-color: #9b59b6;
+    background-color: #7f8c8d;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .subjectCard .progress .correct {
       background-color: #2ecc71; }
@@ -76,7 +76,8 @@ header {
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
-    align-items: center; }
+    align-items: center;
+    overflow: hidden; }
     .subjectCard .correct .tooltip, .subjectCard .incorrect .tooltip, .subjectCard .ncorrect .tooltip {
       background-color: rgba(34, 34, 34, 0.8);
       border-radius: 2px;
@@ -86,10 +87,12 @@ header {
       padding: 2px;
       margin: 2px;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    .subjectCard .correct:hover .tooltip, .subjectCard .incorrect:hover .tooltip, .subjectCard .ncorrect:hover .tooltip {
-      opacity: 1; }
+    .subjectCard .correct:hover, .subjectCard .incorrect:hover, .subjectCard .ncorrect:hover {
+      overflow: visible; }
+      .subjectCard .correct:hover .tooltip, .subjectCard .incorrect:hover .tooltip, .subjectCard .ncorrect:hover .tooltip {
+        opacity: 1; }
   .subjectCard:hover .progress {
-    width: 8px; }
+    width: 16px; }
   .subjectCard h1 {
     font-weight: 300;
     margin-bottom: 16px; }

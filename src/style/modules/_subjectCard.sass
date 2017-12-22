@@ -3,7 +3,7 @@
   position: relative
   margin: 16px
   background-color: $white
-  padding: 16px
+  padding: 16px 16px 16px 32px
   cursor: pointer
   border-radius: 2px
   color: rgba(#000, 0.85)
@@ -14,7 +14,7 @@
     left: 0
     width: 0
     height: 100%
-    background-color: $main
+    background-color: $grey
     +transition(0.3s)
     .correct
       background-color: $green
@@ -25,6 +25,7 @@
     display: -ms-flex
     display: flex
     align-items: center
+    overflow: hidden
     .tooltip
       background-color: rgba(#222, 0.8)
       border-radius: 2px
@@ -35,12 +36,13 @@
       margin: 2px
       +transition(0.3s)
     &:hover
+      overflow: visible
       .tooltip
         opacity: 1
 
   &:hover
     .progress
-      width: 8px
+      width: 16px
   h1
     font-weight: 300
     margin-bottom: 16px
