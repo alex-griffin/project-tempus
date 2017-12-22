@@ -20,6 +20,24 @@
       background-color: $green
     .incorrect
       background-color: $red
+  .correct, .incorrect, .ncorrect
+    display: -webkit-flex
+    display: -ms-flex
+    display: flex
+    align-items: center
+    .tooltip
+      background-color: rgba(#222, 0.8)
+      border-radius: 2px
+      color: rgba(#fff, 0.95)
+      opacity: 0
+      white-space: nowrap
+      padding: 2px
+      margin: 2px
+      +transition(0.3s)
+    &:hover
+      .tooltip
+        opacity: 1
+
   &:hover
     .progress
       width: 8px
