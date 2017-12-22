@@ -399,9 +399,12 @@ const api = {
   ],
   get subjects() {return this.defaultSubjects},
 
-  getAll: function () {
+  getAll: function() {
     return this.subjects;
   },
+  getName: function(name) {
+    return this.subjects.filter((e) => e.name == name)[0];
+  }
 }
 
 export default api;

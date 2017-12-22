@@ -4,6 +4,8 @@ import Header from "./components/Header.js"
 import NotFound from "./components/NotFound.js"
 import Home from "./components/Home.js"
 import SubjectList from "./components/SubjectList.js"
+import Subject from "./components/Subject.js"
+
 import "./style/index.css"
 
 
@@ -20,7 +22,8 @@ class App extends Component {
               <Route path="/app/" exact render={() => (
                 <Redirect to="/app/subjects"></Redirect>
               )} />
-              <Route path="/app/subjects" component={ SubjectList } />
+              <Route path="/app/subjects" exact component={ SubjectList } />
+              <Route path="/app/subjects/:subject" component={ Subject } />
 
               <Route path="*" component={ NotFound } />
             </Switch>
