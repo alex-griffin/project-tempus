@@ -1,16 +1,19 @@
-import React, { Component } from "React"
+import React, { Component } from "react"
 
 export default class SubjectCard extends Component{
   constructor(props) {
     super(props);
-    this.state.subject = props.subject
+    this.state = {
+      subject: props.subject
+    }
   }
 
   render() {
-    <div>
-      <h1>{this.state.subject.name}</h1>
-      
-    </div>
-  }
+    return (
+      <div>
+        <h1>{this.state.subject.name}</h1>
 
+      </div>
+    )
+  }
 }
