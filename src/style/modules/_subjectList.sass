@@ -1,9 +1,16 @@
 #subjectSearch
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1)
   width: 100%
   padding: 16px
   font-size: 24px
-  border-left: 0px solid #2999f9
-  
+  border-left: 0px solid $main
+  +transition(0.3s)
   &:focus
-    border-left: 20px solid #2999f9
+    border-left-width: 20px
+
+#subjectList
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  justify-content: space-around

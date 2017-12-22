@@ -1,0 +1,28 @@
+.subjectCard
+  min-width: 300px
+  position: relative
+  margin: 16px
+  background-color: $white
+  padding: 16px
+  cursor: pointer
+  border-radius: 2px
+  color: rgba(#000, 0.85)
+  +transition(0.3s)
+  .progress
+    position: absolute
+    top: 0
+    left: 0
+    width: 0
+    height: 100%
+    background-color: $main
+    +transition(0.3s)
+    .correct
+      background-color: $green
+    .incorrect
+      background-color: $red
+  &:hover
+    .progress
+      width: 8px
+  h1
+    font-weight: 300
+    margin-bottom: 16px

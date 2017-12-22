@@ -25,11 +25,13 @@ export default class Home extends Component {
   render() {
     let cards = this.state.filteredSubjects.map((e, i, arr) => {
       return (
-        <SubjectCard key={e.id} subject={e}></SubjectCard>
+        <Link to={"/app/subjects/" + e.name} key={e.id}>
+          <SubjectCard subject={e}></SubjectCard>
+        </Link>
       )
     })
     return (
-      <div id="subjectList">
+        <div id="subjectList">
         <input type="text" placeholder="Search" onChange={this.filterList.bind(this)} id="subjectSearch"/>
         { cards }
       </div>
