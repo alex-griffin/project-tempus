@@ -14,11 +14,25 @@ export default class Subject extends Component{
   render() {
     if(!this.state.subject) {
       return(
-      <Redirect to="/app/subjects"></Redirect>
+        <Redirect to="/app/subjects"></Redirect>
       )
     }
+    let questions = this.state.subject.cards.map((item, i) => {
+      return (
+        <li key={i}>
+          <span className="prompt">{item.prompt}</span>
+          <span className="answer">{item.answer}</span>
+        </li>
+      )
+    })
     return (
-      <h1>{this.state.subject.name}</h1>
+      <div id="subject">
+        <h1>{this.state.subject.name}</h1>
+
+        <ul>
+          {questions}
+        </ul>
+      </div>
     )
   }
 }
