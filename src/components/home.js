@@ -7,6 +7,8 @@ export default class Home extends Component {
     return (
       <Link to="/app/">
         <button className="button">Go To App</button>
+
+        {/*TODO: make a home page*/}
       </Link>
     )
   }

@@ -8,7 +8,7 @@ export default class Header extends Component {
     return (
       <header>
         <div id="logo"></div>
-      
+        
         <button className="button">New Timer</button>
       </header>
     )
