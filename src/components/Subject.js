@@ -28,7 +28,7 @@ export default class Subject extends Component{
     return (
       <div id="subject">
         <h1>{this.state.subject.name}</h1>
-
+        <p>{this.state.subject.description}</p>
         <ul>
           {questions}
         </ul>

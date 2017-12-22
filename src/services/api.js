@@ -3,6 +3,7 @@ const api = {
     {
       name: "pre-algebra",
       id: "012",
+      description: "Our Pre-Algebra course is an introduction to basic algebra concepts and a review of arithmetic algorithms. The course emphasizes the concepts necessary to be successful in Algebra I and II. The course helps students develop good mathematical study skills and learning strategies",
       cards: [
         {
           prompt: "f`(x) of x^2",
@@ -69,6 +70,7 @@ const api = {
     {
       name: "calculus",
       id: "000",
+      description: "Calculus (from Latin calculus, literally 'small pebble', used for counting and calculations, like on an abacus) is the mathematical study of continuous change, in the same way that geometry is the study of shape and algebra is the study of generalizations of arithmetic operations.",
       cards: [
         {
           prompt: "f`(x) of x^2",
@@ -135,6 +137,7 @@ const api = {
     {
       name: "trig",
       id: "001",
+      description: "There are arithmetic relations between these functions, which are known as trigonometric identities. The cosine, cotangent, and cosecant are so named because they are respectively the sine, tangent, and secant of the complementary angle abbreviated to \"co-\".",
       cards: [
         {
           prompt: "f`(x) of x^2",
@@ -200,6 +203,7 @@ const api = {
     },
     {
       name: "algebra I",
+      description: "It includes mathematical concepts for working with rational numbers, various expressions, analyzing and solving linear equations & inequalities, data analysis, probability, statistics, and polynomials.",
       id: "002",
       cards: [
         {
@@ -266,6 +270,7 @@ const api = {
     },
     {
       name: "algebra II",
+      description: "Algebra II Course Description. Algebra II: ... It develops advanced algebra skills such as systems of equations, advanced polynomials, imaginary and complex numbers, quadratics, and concepts and includes the study of trigonometric functions. It also introduces matrices and their properties.",
       id: "003",
       cards: [
         {
@@ -332,6 +337,7 @@ const api = {
     },
     {
       name: "geometry",
+      description: "Geometry Course Description. Geometry: Course Description: This course is designed to emphasize the study of the properties and applications of common geometric figures in two and three dimensions. It includes the study of transformations and right triangle trigonometry.",
       id: "004",
       cards: [
         {

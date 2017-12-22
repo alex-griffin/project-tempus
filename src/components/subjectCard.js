@@ -20,12 +20,6 @@ export default class SubjectCard extends Component{
   }
 
   render() {
-    let preItems = [];
-    for(let i = 0; i < 3; i++) {
-      preItems.push((
-        <li key={i}>{this.state.subject.cards[i].prompt}</li>
-      ))
-    }
     let attempts = this.attemptData()
     let style = {
       correct:   {height: attempts.pCorrect * 100 + "%"},
@@ -53,14 +47,14 @@ export default class SubjectCard extends Component{
         </div>
       )
     }
+    console.log(this.state.subject.description)
 
     return (
       <div className="subjectCard">
         {sidebar}
         <h1>{this.state.subject.name}</h1>
-        <ul>
-          {preItems}
-        </ul>
+        <p>{ this.state.subject.description.substr(0, 100)}...</p>
+
       </div>
     )
   }
