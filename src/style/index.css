@@ -12,3 +12,22 @@
   box-sizing: border-box;
   outline: none;
   font-family: 'Open Sans', sans-serif; }
+
+header {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  z-index: 1; }
+
+#subjectSearch {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100%;
+  padding: 16px;
+  font-size: 24px;
+  border-left: 0px solid #2999f9; }
+  #subjectSearch:focus {
+    border-left: 20px solid #2999f9; }
