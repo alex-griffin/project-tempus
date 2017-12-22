@@ -14,21 +14,20 @@ export default class Home extends Component {
   }
 
   filterList(event) {
-    var updatedList = this.state.subjects;
-    updatedList = updatedList.filter(function(item){
-      return item.name.toLowerCase().search(
-        event.target.value.toLowerCase()) !== -1;
-    });
-    this.setState({filteredSubjects: updatedList});
+    let updatedList = this.state.subjects;
+    updatedList = updatedList.filter((e) => {
+      return(e.name.indexOf(event.target.value) !== -1)
+    })
+    this.setState({filteredSubjects: updatedList})
+
   }
 
   render() {
     let cards = this.state.filteredSubjects.map((e, i, arr) => {
       return (
-        <SubjectCard key={i} subject={e}></SubjectCard>
+        <SubjectCard key={e.id} subject={e}></SubjectCard>
       )
     })
-    console.log(cards)
     return (
       <div id="subjectList">
         <input type="text" placeholder="Search" onChange={this.filterList.bind(this)} id="subjectSearch"/>
