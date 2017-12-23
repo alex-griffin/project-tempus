@@ -10,9 +10,6 @@ export default class Home extends Component {
       subjects: api.getAll(),
       get filteredSubjects() {return this.subjects}
     }
-    console.log(this.state.subjects)
-    console.log(api.getAll())
-    console.log(api.getLocalStorage());
   }
 
   filterList(event) {
@@ -26,7 +23,7 @@ export default class Home extends Component {
   render() {
     let cards = this.state.filteredSubjects.map((e, i, arr) => {
       return (
-        <Link to={"/app/subjects/" + e.name} key={e.id}>
+        <Link to={"/app/subjects/" + e.name} key={i}>
           <SubjectCard subject={e}></SubjectCard>
         </Link>
       )

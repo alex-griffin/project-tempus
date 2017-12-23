@@ -12,6 +12,12 @@ export default class Subject extends Component{
     }
   }
 
+  deleteSelf() {
+    console.log("deleteing")
+    api.deleteName(this.state.subject.name)
+  }
+
+
   render() {
     if(!this.state.subject) {
       return(
@@ -36,10 +42,22 @@ export default class Subject extends Component{
           <p>{this.state.subject.description}</p>
           <div className="actions">
             <Link to={"/app/subjects/" + this.state.subject.name + "/timer"}>
-              <Minicard className="action" size="100px" src="http://www.free-icons-download.net/images/timer-icon-71783.png" text="new timer"/>
+              <Minicard className="action"
+                        size="100px"
+                        src="http://www.free-icons-download.net/images/timer-icon-71783.png"
+                        text="new timer"/>
             </Link>
             <Link to={"/app/subjects/" + this.state.subject.name + "/edit"}>
-              <Minicard className="action" size="100px" src="http://www.free-icons-download.net/images/timer-icon-71783.png" text="edit"/>
+              <Minicard className="action"
+                        size="100px"
+                        src="http://www.free-icons-download.net/images/timer-icon-71783.png"
+                        text="edit"/>
+            </Link>
+            <Link to="/app/subjects/" onClick={this.deleteSelf.bind(this)}>
+              <Minicard className="action"
+                        size="100px"
+                        src="http://www.free-icons-download.net/images/timer-icon-71783.png"
+                        text="delete"/>
             </Link>
           </div>
         </div>

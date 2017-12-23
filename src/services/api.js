@@ -408,14 +408,12 @@ const api = {
   getAll: function() {
     if(localStorage.getItem("subjects")) {
       this.getLocalStorage();
-      console.log("local storage is found")
     } else {
       this.subjects = this.defaultSubjects
     }
     return this.subjects;
   },
   getName: function(name) {
-    console.log(this);
     if(!this.subjects) this.getAll();
     return this.subjects.filter((e) => e.name == name)[0] || false;
   },
@@ -446,14 +444,14 @@ const api = {
     if(!this.getName(name)) {
       this.subjects.push(subject)
     } else {
-      let index;
+      let index = null;
       for(let i = 0; i < this.subjects.length; i++) {
         if(this.subjects[i].name == name) {
           index = i;
           break;
         }
       }
-      this.subjects[index] = subject
+      if(index !== null) this.subjects[index] = subject
     }
   },
   saveLocalSorage: function() {
@@ -462,6 +460,17 @@ const api = {
   getLocalStorage: function() {
     this.subjects = JSON.parse(localStorage.getItem("subjects"));
     return this.subjects
+  },
+  deleteName: function(name) {
+    let index = null;
+    for(let i = 0; i < this.subjects.length; i++) {
+      if(this.subjects[i].name == name) {
+        index = i;
+        break;
+      }
+    }
+    if(index !== null) this.subjects.splice(index, 1);
+    this.saveLocalSorage()
   }
 }
 

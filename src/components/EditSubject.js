@@ -33,19 +33,23 @@ export default class EditSubject extends Component{
   render() {
     return (
       <div id="edit">
-        <Link to={"/app/subjects/" + this.state.subject.name}>
-          <button className="button" onClick={this.saveAll.bind(this)}>Save</button>
 
-        </Link>
         <div className="edit editName">
           <p>Name: </p>
           <input id="editName" type="text" className="h1" defaultValue={this.state.subject.name}/>
         </div>
         <div className="edit">
+          <p>Description: </p>
           <textarea id="editDescription" placeholder="description" defaultValue={this.state.subject.description}></textarea>
         </div>
         <button className="button">Import</button>
         <button className="button">Export</button>
+        <Link to={"/app/subjects/" + this.state.subject.name}>
+          <button className="button" onClick={this.saveAll.bind(this)}>Save</button>
+        </Link>
+        <Link to={"/app/subjects/" + this.state.subject.name}>
+          <button className="button">Discard</button>
+        </Link>
       </div>
     )
   }

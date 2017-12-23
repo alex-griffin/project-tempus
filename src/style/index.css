@@ -2,7 +2,6 @@
   font-size: 16px;
   padding: 8px;
   margin: 4px;
-  border-radius: 2px;
   cursor: pointer; }
 
 * {
@@ -42,6 +41,7 @@ header {
   padding: 16px;
   font-size: 24px;
   border-left: 0px solid #9b59b6;
+  background-color: #fafafa;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
   #subjectSearch:focus {
     border-left-width: 20px; }
@@ -166,15 +166,31 @@ header {
 
 #edit {
   padding: 16px; }
-  #edit input, #edit textarea {
+  #edit button {
     border: 2px solid rgba(255, 255, 255, 0.85);
-    color: rgba(255, 255, 255, 0.85);
     background-color: transparent;
-    padding: 4px;
-    margin: 8px;
-    font-size: 16px; }
-  #edit .edit p, #edit .edit input {
-    display: inline-block; }
-  #edit .edit p {
-    color: rgba(255, 255, 255, 0.85);
-    margin: 8px; }
+    color: rgba(255, 255, 255, 0.85); }
+  #edit input, #edit button, #edit textarea {
+    background-color: transparent;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    #edit input:hover, #edit input:active, #edit input:focus, #edit button:hover, #edit button:active, #edit button:focus, #edit textarea:hover, #edit textarea:active, #edit textarea:focus {
+      background-color: rgba(255, 255, 255, 0.05); }
+  #edit .edit {
+    margin: 16px auto;
+    max-width: 720px; }
+    #edit .edit textarea {
+      resize: vertical; }
+    #edit .edit input, #edit .edit textarea {
+      margin: 8px auto;
+      max-width: 720px;
+      width: 90%;
+      display: block;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.85);
+      padding: 4px;
+      font-size: 16px;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    #edit .edit p {
+      color: rgba(255, 255, 255, 0.85);
+      margin: 8px;
+      text-align: center; }
