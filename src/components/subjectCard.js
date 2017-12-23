@@ -47,7 +47,6 @@ export default class SubjectCard extends Component{
         </div>
       )
     }
-    console.log(this.state.subject.description)
 
     return (
       <div className="subjectCard">

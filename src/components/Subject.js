@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Link, Redirect } from "react-router-dom"
+import Minicard from "./MiniCard.js"
 import api from "../services/api.js"
 
 
@@ -27,8 +28,21 @@ export default class Subject extends Component{
     })
     return (
       <div id="subject">
-        <h1>{this.state.subject.name}</h1>
-        <p>{this.state.subject.description}</p>
+        <header className="subheader">
+          <h1>{this.state.subject.name}</h1>
+          <Link to="/app/subjects/">Back</Link>
+        </header>
+        <div className="info">
+          <p>{this.state.subject.description}</p>
+          <div className="actions">
+            <Link to={"/app/subjects/" + this.state.subject.name + "/timer"}>
+              <Minicard className="action" size="100px" src="http://www.free-icons-download.net/images/timer-icon-71783.png" text="new timer"/>
+            </Link>
+            <Link to={"/app/subjects/" + this.state.subject.name + "/edit"}>
+              <Minicard className="action" size="100px" src="http://www.free-icons-download.net/images/timer-icon-71783.png" text="edit"/>
+            </Link>
+          </div>
+        </div>
         <ul>
           {questions}
         </ul>

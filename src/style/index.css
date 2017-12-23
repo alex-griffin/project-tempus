@@ -30,8 +30,12 @@ header {
   align-items: center;
   justify-content: space-around;
   position: relative;
-  z-index: 1;
-  background-color: #fafafa; }
+  z-index: 5;
+  background-color: #fafafa;
+  color: rgba(0, 0, 0, 0.85); }
+
+.subheader {
+  z-index: 1; }
 
 #subjectSearch {
   width: 100%;
@@ -98,34 +102,65 @@ header {
     font-weight: 300;
     margin-bottom: 16px; }
 
-#subject {
-  padding: 16px;
-  max-width: 720px; }
-  #subject h1 {
-    color: rgba(255, 255, 255, 0.85);
-    margin: 4px;
-    font-size: 32px; }
-  #subject p {
+#subject h1 {
+  margin: 4px;
+  font-size: 32px;
+  padding: 4px; }
+
+#subject .info {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  align-items: center; }
+  #subject .info .actions {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: center;
+    min-width: 50%; }
+  #subject .info p {
     font-size: 16px;
     line-height: 1.6em;
-    color: rgba(255, 255, 255, 0.85); }
-  #subject ul {
-    width: 100%; }
-    #subject ul li {
-      color: rgba(255, 255, 255, 0.85);
-      display: -webkit-flex;
-      display: -ms-flex;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 4px;
-      background-color: #444;
-      margin: 16px 4px;
-      font-size: 16px; }
-      #subject ul li span.prompt {
-        padding: 12px;
-        width: 35%;
-        border-right: 1px solid rgba(250, 250, 250, 0.1); }
-      #subject ul li span.answer {
-        width: 65%;
-        padding: 12px; }
+    color: rgba(255, 255, 255, 0.85);
+    padding: 16px;
+    min-width: 50%; }
+
+#subject ul {
+  margin: 16px; }
+  #subject ul li {
+    color: rgba(255, 255, 255, 0.85);
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 4px;
+    background-color: #444;
+    margin: 16px 4px;
+    font-size: 16px; }
+    #subject ul li span.prompt {
+      padding: 12px;
+      width: 35%;
+      border-right: 1px solid rgba(250, 250, 250, 0.1); }
+    #subject ul li span.answer {
+      width: 65%;
+      padding: 12px; }
+
+.minicard {
+  background-color: #fafafa;
+  margin: 16px;
+  height: 125px;
+  width: 125px;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  .minicard:hover {
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
+  .minicard span {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.85); }
