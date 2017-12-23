@@ -403,13 +403,60 @@ const api = {
       ]
     }
   ],
-  get subjects() {return this.defaultSubjects},
-
+  get subjects() { return this.defaultSubjects },
+  set subjects(v) {},
   getAll: function() {
+    if(localStorage.getItem("subjects")) {
+      this.getLocalStorage();
+    }
     return this.subjects;
   },
   getName: function(name) {
-    return this.subjects.filter((e) => e.name == name)[0];
+    return this.subjects.filter((e) => e.name == name)[0] || false;
+  },
+  getNewSubject: function() {
+    return {
+      name: "",
+      description: "",
+      id: "",
+      cards: [
+        {
+          prompt: "",
+          answer: "",
+          attempted: 0,
+          correct: 0
+        },
+      ]
+    }
+  },
+  getNewCard: function() {
+    return {
+      prompt: "f`(x) of x^2",
+      answer: "2x",
+      attempted: 0,
+      correct: 0
+    }
+  },
+  setSubject: function(name, subject) {
+    if(!this.getName(name)) {
+      this.subjects.push(subject)
+    } else {
+      let index;
+      for(let i = 0; i < this.subjects.length; i++) {
+        if(this.subjects[i].name == name) {
+          index = i;
+          break;
+        }
+      }
+      this.subjects[index] = subject
+    }
+  },
+  saveLocalSorage: function() {
+    localStorage.setItem("subjects", JSON.stringify(this.subjects))
+  },
+  getLocalStorage: function() {
+    this.subjects = JSON.parse(localStorage.getItem("subjects"));
+    return this.subjects
   }
 }
 

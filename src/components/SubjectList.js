@@ -16,9 +16,8 @@ export default class Home extends Component {
     let updatedList = this.state.subjects;
     updatedList = updatedList.filter((e) => {
       return(e.name.indexOf(event.target.value) !== -1)
-    })
+    });
     this.setState({filteredSubjects: updatedList})
-
   }
 
   render() {
@@ -33,6 +32,12 @@ export default class Home extends Component {
         <div id="subjectList">
         <input type="text" placeholder="Filter" onChange={this.filterList.bind(this)} id="subjectSearch"/>
         { cards }
+        <Link to="/app/subjects/new/">
+          <div className="subjectCard">
+            <h1>Create new subject</h1>
+          </div>
+        </Link>
+
       </div>
     )
   }
