@@ -403,15 +403,20 @@ const api = {
       ]
     }
   ],
-  get subjects() { return this.defaultSubjects },
-  set subjects(v) {},
+  subjects: null,
+
   getAll: function() {
     if(localStorage.getItem("subjects")) {
       this.getLocalStorage();
+      console.log("local storage is found")
+    } else {
+      this.subjects = this.defaultSubjects
     }
     return this.subjects;
   },
   getName: function(name) {
+    console.log(this);
+    if(!this.subjects) this.getAll();
     return this.subjects.filter((e) => e.name == name)[0] || false;
   },
   getNewSubject: function() {

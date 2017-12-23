@@ -6,10 +6,10 @@ import Home from "./components/Home.js"
 import SubjectList from "./components/SubjectList.js"
 import Subject from "./components/Subject.js"
 import EditSubject from "./components/EditSubject.js"
-
+import api from "./services/api.js"
 import "./style/index.css"
 
-
+api.getAll();
 
 class App extends Component {
   render() {

@@ -10,6 +10,9 @@ export default class Home extends Component {
       subjects: api.getAll(),
       get filteredSubjects() {return this.subjects}
     }
+    console.log(this.state.subjects)
+    console.log(api.getAll())
+    console.log(api.getLocalStorage());
   }
 
   filterList(event) {
