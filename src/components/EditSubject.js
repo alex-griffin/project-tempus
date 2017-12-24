@@ -10,7 +10,7 @@ export default class EditSubject extends Component{
       subject: api.getName(props.match.params.subject) || api.getNewSubject(),
       prevSubject: !!(api.getName(props.match.params.subject))
     }
-
+    this.num = 0;
   }
 
   saveAll(e) {
@@ -46,21 +46,27 @@ export default class EditSubject extends Component{
   removeCard(i) {
     console.log(i)
     let subject = {...this.state.subject};
-    subject.cards.splice(i, 1);
+    subject.cards = subject.cards.filter((_, index) => i != index);
+    console.log(subject.cards)
     this.setState({subject});
   }
 
   render() {
-    let cards = this.state.subject.cards.map((item, i) => {
+    console.log(cards)
+    let cards = [];
+    console.log(cards)
+    cards = this.state.subject.cards.map((item, i) => {
       return (
-        <div key={i} className="card">
-          <input type="text" className="prompt" defaultValue={item.prompt} />
+        <div key={i + this.num} className="card">
+          <input type="text" className="prompt" defaultValue={item.prompt} ref={(input) => this.input = input} />
           <span>:</span>
-          <input type="text" className="answer" defaultValue={item.answer} />
+          <input type="text" className="answer" defaultValue={item.answer} ref={(input) => this.input = input} />
           <button className="remove" onClick={() => this.removeCard(i)}>X</button>
         </div>
       )
     });
+    this.num += cards.length
+    console.log(cards)
 
     return (
       <div id="edit">
