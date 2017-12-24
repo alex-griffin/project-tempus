@@ -104,25 +104,21 @@ header {
 #subject h1 {
   margin: 4px;
   font-size: 32px;
-  padding: 4px; }
+  padding: 4px;
+  color: rgba(255, 255, 255, 0.85); }
 
-#subject .info {
+#subject .info .actions {
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
-  align-items: center; }
-  #subject .info .actions {
-    display: -webkit-flex;
-    display: -ms-flex;
-    display: flex;
-    justify-content: center;
-    min-width: 50%; }
-  #subject .info p {
-    font-size: 16px;
-    line-height: 1.6em;
-    color: rgba(255, 255, 255, 0.85);
-    padding: 16px;
-    min-width: 50%; }
+  flex-wrap: wrap; }
+
+#subject .info p {
+  font-size: 16px;
+  line-height: 1.6em;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 16px;
+  max-width: 640px; }
 
 #subject ul {
   margin: 16px; }
@@ -157,12 +153,17 @@ header {
   flex-direction: column;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  position: relative;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
   .minicard:hover {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
   .minicard span {
     text-align: center;
-    color: rgba(0, 0, 0, 0.85); }
+    color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    bottom: 4px; }
+  .minicard img {
+    margin: 4px; }
 
 #edit {
   padding: 16px; }

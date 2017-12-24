@@ -27,17 +27,14 @@ export default class Subject extends Component{
     let questions = this.state.subject.cards.map((item, i) => {
       return (
         <li key={i}>
-          <span className="prompt">{item.prompt}</span>
-          <span className="answer">{item.answer}</span>
+          <span className="prompt">{ item.prompt }</span>
+          <span className="answer">{ item.answer }</span>
         </li>
       )
     })
     return (
       <div id="subject">
-        <header className="subheader">
-          <h1>{this.state.subject.name}</h1>
-          <Link to="/app/subjects/">Back</Link>
-        </header>
+      <h1>{ this.state.subject.name }</h1>
         <div className="info">
           <p>{this.state.subject.description}</p>
           <div className="actions">
@@ -50,13 +47,13 @@ export default class Subject extends Component{
             <Link to={"/app/subjects/" + this.state.subject.name + "/edit"}>
               <Minicard className="action"
                         size="100px"
-                        src="http://www.free-icons-download.net/images/timer-icon-71783.png"
+                        src="https://d30y9cdsu7xlg0.cloudfront.net/png/347-200.png"
                         text="edit"/>
             </Link>
             <Link to="/app/subjects/" onClick={this.deleteSelf.bind(this)}>
               <Minicard className="action"
                         size="100px"
-                        src="http://www.free-icons-download.net/images/timer-icon-71783.png"
+                        src="http://www.pvhc.net/img19/kjugwpyxdoamxrjkckrs.png"
                         text="delete"/>
             </Link>
           </div>
