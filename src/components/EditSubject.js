@@ -14,37 +14,64 @@ export default class EditSubject extends Component{
   }
 
   saveAll(e) {
+
     if(document.getElementById("editName").value) {
       let name = "";
-      if(this.state.prevSubject) { name = this.state.subjectName }
+      if(this.state.prevSubject) { name = this.state.subject.name }
+      let subject = { ...this.state.subject };
 
-      let newQs = document.getElementsByClassName("card");
-      this.state.subject.cards = [];
-      for(let i = 0; i < newQs.length; i++) {
-        if(newQs[i].children[0].value && newQs[i].children[2].value)
-        this.state.subject.cards.push(api.getNewCard(newQs[i].children[0].value, newQs[i].children[2].value))
+      subject.name = document.getElementById("editName").value;
+      subject.description = document.getElementById("editDescription").value;
+
+      let newQElements = document.getElementsByClassName("card");
+      let prevCards = subject.cards;
+      subject.cards = [];
+      let newQs = [];
+
+      for(let i = 0; i < newQElements.length; i++) {
+        if(newQElements[i].children[0].value && newQElements[i].children[2].value) {
+
+          newQs.push(api.getNewCard(newQElements[i].children[0].value,
+                                    newQElements[i].children[2].value));
+
+          let index = newQs.length - 1;
+
+          let prevCard = prevCards.filter((item) => {
+            return (item.prompt === newQs[index].prompt &&
+                    item.answer === newQs[index].answer)
+          })
+
+          if(prevCard) {
+            newQs[index] = prevCard[0];
+          }
+        }
       }
-
-      this.state.subject.name = document.getElementById("editName").value;
-      this.state.subject.description = document.getElementById("editDescription").value;
+      console.log(newQs)
+      subject.cards = newQs;
 
       if(name) {
-        api.setSubject(name, this.state.subject);
+        api.setSubject(name, subject);
       } else {
-        api.setSubject(this.state.subject.name, this.state.subject);
+        api.setSubject(subject.name, subject);
       }
+      this.setState({subject})
       api.saveLocalSorage();
+    } else {
+      alert("your subject needs a name")
     }
+
   }
 
+
   addCard() {
+    this.saveAll();
     let subject = {...this.state.subject};
     subject.cards.push(api.getNewCard("question", "answer"))
     this.setState({subject});
   }
 
   removeCard(i) {
-    console.log(i)
+    this.saveAll();
     let subject = {...this.state.subject};
     subject.cards = subject.cards.filter((_, index) => i != index);
     console.log(subject.cards)
@@ -52,9 +79,7 @@ export default class EditSubject extends Component{
   }
 
   render() {
-    console.log(cards)
     let cards = [];
-    console.log(cards)
     cards = this.state.subject.cards.map((item, i) => {
       return (
         <div key={i + this.num} className="card">
@@ -66,8 +91,6 @@ export default class EditSubject extends Component{
       )
     });
     this.num += cards.length
-    console.log(cards)
-
     return (
       <div id="edit">
 
