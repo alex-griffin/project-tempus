@@ -18,6 +18,13 @@ export default class EditSubject extends Component{
       let name = "";
       if(this.state.prevSubject) { name = this.state.subjectName }
 
+      let newQs = document.getElementsByClassName("card");
+      this.state.subject.cards = [];
+      for(let i = 0; i < newQs.length; i++) {
+        if(newQs[i].children[0].value && newQs[i].children[2].value)
+        this.state.subject.cards.push(api.getNewCard(newQs[i].children[0].value, newQs[i].children[2].value))
+      }
+
       this.state.subject.name = document.getElementById("editName").value;
       this.state.subject.description = document.getElementById("editDescription").value;
 
@@ -30,7 +37,31 @@ export default class EditSubject extends Component{
     }
   }
 
+  addCard() {
+    let subject = {...this.state.subject};
+    subject.cards.push(api.getNewCard("question", "answer"))
+    this.setState({subject});
+  }
+
+  removeCard(i) {
+    console.log(i)
+    let subject = {...this.state.subject};
+    subject.cards.splice(i, 1);
+    this.setState({subject});
+  }
+
   render() {
+    let cards = this.state.subject.cards.map((item, i) => {
+      return (
+        <div key={i} className="card">
+          <input type="text" className="prompt" defaultValue={item.prompt} />
+          <span>:</span>
+          <input type="text" className="answer" defaultValue={item.answer} />
+          <button className="remove" onClick={() => this.removeCard(i)}>X</button>
+        </div>
+      )
+    });
+
     return (
       <div id="edit">
 
@@ -42,14 +73,21 @@ export default class EditSubject extends Component{
           <p>Description: </p>
           <textarea id="editDescription" placeholder="description" defaultValue={this.state.subject.description}></textarea>
         </div>
-        <button className="button">Import</button>
-        <button className="button">Export</button>
-        <Link to={"/app/subjects/" + this.state.subject.name}>
-          <button className="button" onClick={this.saveAll.bind(this)}>Save</button>
-        </Link>
-        <Link to={"/app/subjects/" + this.state.subject.name}>
-          <button className="button">Discard</button>
-        </Link>
+        { cards }
+        <div className="buttons">
+          <button className="add" onClick={this.addCard.bind(this)}>+</button>
+        </div>
+        <div className="buttons">
+
+
+          <button className="button">Import</button>
+          <button className="button">Export</button>
+            <button className="button" onClick={this.saveAll.bind(this)}>Save</button>
+          <Link to={"/app/subjects/" + this.state.subject.name}>
+            <button className="button">Back</button>
+          </Link>
+        </div>
+
       </div>
     )
   }

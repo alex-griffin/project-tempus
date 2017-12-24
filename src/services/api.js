@@ -432,10 +432,10 @@ const api = {
       ]
     }
   },
-  getNewCard: function() {
+  getNewCard: function(p, a) {
     return {
-      prompt: "f`(x) of x^2",
-      answer: "2x",
+      prompt: p || "",
+      answer: a || "",
       attempted: 0,
       correct: 0
     }

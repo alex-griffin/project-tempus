@@ -30,7 +30,10 @@ export default class Home extends Component {
     })
     return (
         <div id="subjectList">
-        <input type="text" placeholder="Filter" onChange={this.filterList.bind(this)} id="subjectSearch"/>
+        <input type="text"
+               placeholder="Filter"
+               onChange={this.filterList.bind(this)}
+               id="subjectSearch" />
         { cards }
         <Link to="/app/subjects/new/">
           <div className="subjectCard">

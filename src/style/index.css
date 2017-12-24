@@ -181,16 +181,54 @@ header {
     #edit .edit textarea {
       resize: vertical; }
     #edit .edit input, #edit .edit textarea {
-      margin: 8px auto;
-      max-width: 720px;
-      width: 90%;
+      margin: 8px;
       display: block;
       border: 2px solid rgba(255, 255, 255, 0.85);
       color: rgba(255, 255, 255, 0.85);
       padding: 4px;
       font-size: 16px;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+      width: calc(100% - 17px); }
     #edit .edit p {
       color: rgba(255, 255, 255, 0.85);
       margin: 8px;
       text-align: center; }
+  #edit .card {
+    margin: 16px auto;
+    max-width: 720px;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; }
+    #edit .card .remove {
+      display: block;
+      margin: 8px;
+      width: 38px;
+      height: 32px;
+      width: 32px; }
+    #edit .card input {
+      margin: 8px;
+      display: block;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.85);
+      padding: 4px;
+      font-size: 16px;
+      display: inline-block;
+      flex: 1; }
+    #edit .card span {
+      color: rgba(255, 255, 255, 0.85);
+      margin: 4px; }
+  #edit .buttons {
+    margin: 0 auto;
+    max-width: 720px; }
+    #edit .buttons::after {
+      content: "";
+      display: table;
+      clear: both; }
+    #edit .buttons .add {
+      height: 42px;
+      width: 42px;
+      display: block;
+      margin: 4px;
+      float: right;
+      cursor: pointer; }
