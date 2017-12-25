@@ -26,12 +26,13 @@ export default class Subject extends Component{
     }
     let questions = this.state.subject.cards.map((item, i) => {
       return (
-        <li key={i}>
-          <span className="prompt">{ item.prompt }</span>
-          <span className="answer">{ item.answer }</span>
+        <li className="question" key={i}>
+          <p className="prompt">{ item.prompt }</p>
+          <p className="answer">{ item.answer }</p>
         </li>
       )
     })
+    let cardSize = "64px"
     return (
       <div id="subject">
       <h1>{ this.state.subject.name }</h1>
@@ -40,20 +41,20 @@ export default class Subject extends Component{
           <div className="actions">
             <Link to={"/app/subjects/" + this.state.subject.name + "/timer"}>
               <Minicard className="action"
-                        size="100px"
-                        src="http://www.free-icons-download.net/images/timer-icon-71783.png"
+                        size={ cardSize }
+                        icon="alarm"
                         text="new timer"/>
             </Link>
             <Link to={"/app/subjects/" + this.state.subject.name + "/edit"}>
               <Minicard className="action"
-                        size="100px"
-                        src="https://d30y9cdsu7xlg0.cloudfront.net/png/347-200.png"
+                        size={ cardSize }
+                        icon="edit"
                         text="edit"/>
             </Link>
             <Link to="/app/subjects/" onClick={this.deleteSelf.bind(this)}>
               <Minicard className="action"
-                        size="100px"
-                        src="http://www.pvhc.net/img19/kjugwpyxdoamxrjkckrs.png"
+                        size={ cardSize }
+                        icon="delete_forever"
                         text="delete"/>
             </Link>
             <Link to={{
@@ -61,13 +62,13 @@ export default class Subject extends Component{
                        state: { subject: this.state.subject.name }
                      }} >
               <Minicard className="action"
-                        size="100px"
-                        src="https://d30y9cdsu7xlg0.cloudfront.net/png/347-200.png"
+                        size={ cardSize }
+                        icon="assignment"
                         text="test"/>
             </Link>
           </div>
         </div>
-        <ul>
+        <ul className="questions">
           {questions}
         </ul>
       </div>

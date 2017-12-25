@@ -15,7 +15,7 @@ input[type="text"].textInput {
     background-color: #000; }
 
 .minicard {
-  background-color: #fafafa;
+  background-color: #fdfdfd;
   margin: 16px;
   height: 125px;
   width: 125px;
@@ -26,6 +26,7 @@ input[type="text"].textInput {
   flex-direction: column;
   cursor: pointer;
   position: relative;
+  padding: 16px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
   .minicard:hover {
@@ -35,8 +36,9 @@ input[type="text"].textInput {
     color: rgba(0, 0, 0, 0.85);
     position: absolute;
     bottom: 4px; }
-  .minicard img {
-    margin: 4px; }
+  .minicard i {
+    margin: 4px;
+    text-align: center; }
 
 * {
   margin: 0;
@@ -70,7 +72,7 @@ html, body {
   #header #logo {
     margin: 4px; }
     #header #logo h1 {
-      color: rgba(250, 250, 250, 0.85); }
+      color: rgba(253, 253, 253, 0.85); }
 
 #subjectSearch {
   width: 100%;
@@ -95,7 +97,7 @@ html, body {
   padding: 16px 16px 16px 32px;
   color: rgba(0, 0, 0, 0.85);
   position: relative;
-  background-color: #fafafa;
+  background-color: #fdfdfd;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
   .subjectCard:hover {
@@ -118,7 +120,7 @@ html, body {
       .subjectCard .progress .atmptData .tooltip {
         opacity: 0;
         white-space: nowrap;
-        color: rgba(250, 250, 250, 0.85);
+        color: rgba(253, 253, 253, 0.85);
         padding: 2px;
         margin: 4px;
         background-color: rgba(0, 0, 0, 0.7);
@@ -127,6 +129,41 @@ html, body {
         opacity: 1; }
   .subjectCard:hover .progress {
     width: 16px; }
+
+#subject {
+  margin: 32px;
+  max-width: 960px; }
+  #subject h1 {
+    font-weight: 300;
+    font-size: 56px;
+    margin-bottom: 8px; }
+  #subject .info p {
+    font-size: 1.1em;
+    line-height: 1.6em;
+    margin-bottom: 8px; }
+  #subject .actions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px; }
+  #subject .questions {
+    padding: 16px 0; }
+    #subject .questions .question {
+      display: -webkit-flex;
+      display: -ms-flex;
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      background-color: #fdfdfd;
+      padding: 16px 32px; }
+      #subject .questions .question p {
+        display: inline-block;
+        padding: 0 16px;
+        font-size: 1.1em;
+        line-height: 1.6em; }
+      #subject .questions .question .prompt {
+        width: 300px; }
+      #subject .questions .question .answer {
+        border-left: 1px solid #f0f0f0; }
 
 #configure {
   color: rgba(255, 255, 255, 0.85); }
