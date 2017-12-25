@@ -22,14 +22,14 @@ class App extends Component {
           <main>
             <Switch>
               <Route path="/" exact component={ Home } />
-              <Route path="/app/" exact render={() => (
+              <Route path="/app" exact render={() => (
                 <Redirect to="/app/subjects"></Redirect>
               )} />
               <Route path="/app/subjects" exact component={ SubjectList } />
               <Route path="/app/subjects/new" exact component={ EditSubject } />
-              <Route path="/app/subjects/:subject/edit" exact component={ EditSubject } />
               <Route path="/app/subjects/test/configure" component={ TestConfigure } />
-              <Route path="/app/subjects/:subject/test/:testType&:num" component={ SubjectTest } />
+              <Route path="/app/subjects/:subject/edit" exact component={ EditSubject } />
+              <Route path="/app/subjects/:subject/test" exact component={ SubjectTest } />
 
               <Route path="/app/subjects/:subject" component={ Subject } />
               <Route path="*" component={ NotFound } />

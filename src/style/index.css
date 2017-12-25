@@ -233,3 +233,18 @@ header {
       margin: 4px;
       float: right;
       cursor: pointer; }
+
+#configure {
+  color: rgba(255, 255, 255, 0.85); }
+  #configure .option input, #configure .option select, #configure .option p {
+    display: inline-block;
+    margin: 8px;
+    font-size: 16px;
+    padding: 4px; }
+  #configure .option input {
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    #configure .option input:hover, #configure .option input:active, #configure .option input:focus {
+      background-color: rgba(255, 255, 255, 0.05); }

@@ -58,7 +58,7 @@ export default class Subject extends Component{
             </Link>
             <Link to={{
                        pathname: "/app/subjects/test/configure",
-                       
+                       state: { subject: this.state.subject.name }
                      }} >
               <Minicard className="action"
                         size="100px"
