@@ -1,9 +1,10 @@
 .subjectCard
-  width: 300px
+  max-width: 300px
   margin: 16px
   padding: 16px 16px 16px 32px
   color: rgba(#000, 0.85)
   position: relative
+  background-color: $white
   +shadow(1)
   +transition(0.3s)
   &:hover
@@ -28,7 +29,7 @@
         white-space: nowrap
         color: rgba($white, 0.85)
         padding: 2px
-        margin: 2px
+        margin: 4px
         background-color: rgba(#000, 0.7)
         +transition(0.3s)
       &:hover
