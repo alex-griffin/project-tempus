@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Link } from "react-router-dom"
 
 export default class SubjectCard extends Component{
   constructor(props) {
@@ -50,10 +51,11 @@ export default class SubjectCard extends Component{
 
     return (
       <div className="subjectCard">
-        {sidebar}
-        <h1>{this.state.subject.name}</h1>
-        <p>{ this.state.subject.description.substr(0, 100)}...</p>
-
+        <Link to={"/app/subjects/" + this.state.subject.name}>
+          {sidebar}
+          <h1>{this.state.subject.name}</h1>
+          <p>{ this.state.subject.description.substr(0, 100)}...</p>
+        </Link>
       </div>
     )
   }

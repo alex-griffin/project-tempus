@@ -23,9 +23,7 @@ export default class Home extends Component {
   render() {
     let cards = this.state.filteredSubjects.map((e, i, arr) => {
       return (
-        <Link to={"/app/subjects/" + e.name} key={i}>
-          <SubjectCard subject={e}></SubjectCard>
-        </Link>
+          <SubjectCard key={i} subject={e}></SubjectCard>
       )
     })
     return (
