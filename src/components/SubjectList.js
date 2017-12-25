@@ -33,11 +33,11 @@ export default class Home extends Component {
                onChange={this.filterList.bind(this)}
                id="subjectSearch" />
         { cards }
-        <Link to="/app/subjects/new/">
-          <div className="subjectCard">
+        <div className="subjectCard">
+          <Link to="/app/subjects/new/">
             <h1>Create new subject</h1>
-          </div>
-        </Link>
+          </Link>
+        </div>
 
       </div>
     )

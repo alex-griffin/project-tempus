@@ -30,10 +30,10 @@ export default class SubjectCard extends Component{
     if(attempts.total !== 0) {
       sidebar = (
         <div className="progress">
-          <div className="correct" style={style.correct}>
+          <div className="atmptData correct" style={style.correct}>
             <span className="tooltip">{attempts.correct} correct answers</span>
           </div>
-          <div className="incorrect" style={style.incorrect}>
+          <div className="atmptData incorrect" style={style.incorrect}>
             <span className="tooltip">{attempts.total - attempts.correct} incorrect answers</span>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default class SubjectCard extends Component{
     } else {
       sidebar = (
         <div className="progress">
-          <div className="ncorrect" style={{height: "100%"}}>
+          <div className="atmptData ncorrect" style={{height: "100%"}}>
             <span className="tooltip">No answer data</span>
 
           </div>

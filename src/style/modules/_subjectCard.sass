@@ -1,49 +1,40 @@
 .subjectCard
-  position: relative
-  margin: 16px
-  background-color: $white
-  padding: 16px 16px 16px 32px
-  cursor: pointer
-  border-radius: 2px
-  color: rgba(#000, 0.85)
   width: 300px
+  margin: 16px
+  padding: 16px 16px 16px 32px
+  color: rgba(#000, 0.85)
+  position: relative
+  +shadow(1)
   +transition(0.3s)
-  +shadow(2)
+  &:hover
+    +shadow(3)
   .progress
     position: absolute
     top: 0
     left: 0
     width: 0
     height: 100%
-    background-color: $grey
+    background-color: $main
     +transition(0.3s)
     .correct
       background-color: $green
     .incorrect
       background-color: $red
-  .correct, .incorrect, .ncorrect
-    display: -webkit-flex
-    display: -ms-flex
-    display: flex
-    align-items: center
-    overflow: hidden
-    .tooltip
-      background-color: rgba(#222, 0.8)
-      border-radius: 2px
-      color: rgba(#fff, 0.95)
-      opacity: 0
-      white-space: nowrap
-      padding: 2px
-      margin: 2px
-      +transition(0.3s)
-    &:hover
-      overflow: visible
+    .atmptData
+      display: flex
+      align-items: center
       .tooltip
-        opacity: 1
+        opacity: 0
+        white-space: nowrap
+        color: rgba($white, 0.85)
+        padding: 2px
+        margin: 2px
+        background-color: rgba(#000, 0.7)
+        +transition(0.3s)
+      &:hover
+        .tooltip
+          opacity: 1
 
   &:hover
     .progress
       width: 16px
-  h1
-    font-weight: 300
-    margin-bottom: 16px
