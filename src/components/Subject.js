@@ -56,6 +56,15 @@ export default class Subject extends Component{
                         src="http://www.pvhc.net/img19/kjugwpyxdoamxrjkckrs.png"
                         text="delete"/>
             </Link>
+            <Link to={{
+                       pathname: "/app/subjects/test/configure",
+                       
+                     }} >
+              <Minicard className="action"
+                        size="100px"
+                        src="https://d30y9cdsu7xlg0.cloudfront.net/png/347-200.png"
+                        text="test"/>
+            </Link>
           </div>
         </div>
         <ul>
