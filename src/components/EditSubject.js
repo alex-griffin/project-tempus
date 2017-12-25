@@ -82,9 +82,9 @@ export default class EditSubject extends Component {
     cards = this.state.subject.cards.map((item, i) => {
       return (
         <div key={i + this.num} className="card">
-          <input type="text" className="prompt" defaultValue={item.prompt} ref={(input) => this.input = input} />
+          <input type="text" className="prompt textInput" defaultValue={item.prompt} ref={(input) => this.input = input} />
           <span>:</span>
-          <input type="text" className="answer" defaultValue={item.answer} ref={(input) => this.input = input} />
+          <input type="text" className="answer textInput" defaultValue={item.answer} ref={(input) => this.input = input} />
           <button className="remove" onClick={() => this.removeCard(i)}>X</button>
         </div>
       )

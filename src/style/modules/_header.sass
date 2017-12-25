@@ -1,14 +1,13 @@
-header
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
-  display: -webkit-flex
-  display: -ms-flex
+#header
+  background-color: $main
+  padding: 8px
   display: flex
   align-items: center
-  justify-content: space-around
-  position: relative
-  z-index: 5
-  background-color: $main
-  color: rgba(#000, 0.85)
-
-.subheader
-  z-index: 1
+  justify-content: space-between
+  +shadow(2)
+  .button
+    margin: 4px
+  #logo
+    margin: 4px
+    h1
+      color: rgba($white, 0.85)

@@ -7,9 +7,11 @@ export default class Header extends Component {
 
   render() {
     return (
-      <header>
-        <div id="logo"></div>
-
+      <header id="header">
+        <div id="logo">
+          <h1>Termus</h1>
+        </div>
+        
         <div className="actions">
           <button className="button">New Timer</button>
           <Link to="/app/subjects">

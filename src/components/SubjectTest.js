@@ -53,7 +53,7 @@ export default class SubjectTest extends Component {
       ))
     }
 
-    
+
 
     return questions;
   }
@@ -71,8 +71,6 @@ export default class SubjectTest extends Component {
         <form onSubmit={this.handleSubmit}>
           { this.generateTest() }
         </form>
-
-
       </div>
     )
   }
