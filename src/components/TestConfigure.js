@@ -12,7 +12,6 @@ export default class TestConfigure extends Component{
                     multipleChoice: 5,
                     textResponce: 2
                   }}
-
   }
 
   handleChange(event) {

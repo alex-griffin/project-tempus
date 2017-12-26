@@ -209,10 +209,10 @@ html, body {
     margin: 0 16px;
     flex: 1;
     font-size: 16px;
-    background-color: transparent;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    background-color: rgba(253, 253, 253, 0);
+    transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
     #edit textarea:focus, #edit input:focus {
-      border-left: 2px solid #2c3e50; }
+      background-color: #fdfdfd; }
   #edit .card {
     background-color: #fdfdfd;
     margin-bottom: 8px;
@@ -238,16 +238,31 @@ html, body {
     background-color: #fdfdfd; }
 
 #configure {
-  color: rgba(255, 255, 255, 0.85); }
-  #configure .option input, #configure .option select, #configure .option p {
-    display: inline-block;
-    margin: 8px;
-    font-size: 16px;
-    padding: 4px; }
-  #configure .option input {
-    border: 2px solid rgba(255, 255, 255, 0.85);
-    background-color: transparent;
-    color: rgba(255, 255, 255, 0.85);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    #configure .option input:hover, #configure .option input:active, #configure .option input:focus {
-      background-color: rgba(255, 255, 255, 0.05); }
+  margin: 32px; }
+  #configure h1 {
+    margin-bottom: 16px;
+    font-size: 36px; }
+  #configure .option {
+    margin-bottom: 8px; }
+    #configure .option p, #configure .option select, #configure .option input {
+      display: inline-block;
+      margin: 0 8px;
+      padding: 4px 8px; }
+    #configure .option p {
+      width: 216px; }
+    #configure .option input, #configure .option select {
+      background: transparent;
+      border-left: 2px solid #757575;
+      font-size: 16px;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+      #configure .option input:focus, #configure .option select:focus {
+        background-color: #fdfdfd; }
+    #configure .option input {
+      width: 50px; }
+    #configure .option select option {
+      background-color: #fdfdfd;
+      outline: none;
+      font-size: 14px; }
+      #configure .option select option:hover, #configure .option select option:focus {
+        background-color: #2c3e50;
+        color: #fdfdfd; }

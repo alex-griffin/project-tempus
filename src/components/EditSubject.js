@@ -13,8 +13,8 @@ export default class EditSubject extends Component {
     this.num = 0;
   }
 
-  saveAll(e) {
-    if(document.getElementById("editName").value) {
+  saveAll(namecheck) {
+    if(document.getElementById("editName").value || namecheck) {
       let name = "";
       if(this.state.prevSubject) { name = this.state.subject.name }
       let subject = { ...this.state.subject };
@@ -57,22 +57,20 @@ export default class EditSubject extends Component {
     } else {
       alert("your subject needs a name")
     }
-
   }
 
 
   addCard() {
-    this.saveAll();
+    this.saveAll(true);
     let subject = {...this.state.subject};
     subject.cards.push(api.getNewCard("question", "answer"))
-    this.setState({subject});
+    this.setState({ subject });
   }
 
   removeCard(i) {
-    this.saveAll();
+    this.saveAll(true);
     let subject = {...this.state.subject};
     subject.cards = subject.cards.filter((_, index) => i != index);
-    console.log(subject.cards)
     this.setState({subject});
   }
 
@@ -131,7 +129,7 @@ export default class EditSubject extends Component {
         <div className="buttons">
           <button className="button">Import</button>
           <button className="button">Export</button>
-            <button className="button" onClick={this.saveAll.bind(this)}>Save</button>
+            <button className="button" onClick={() => {this.saveAll(false)}}>Save</button>
           <Link to={"/app/subjects/" + this.state.subject.name}>
             <button className="button">Back</button>
           </Link>

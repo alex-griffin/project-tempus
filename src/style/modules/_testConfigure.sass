@@ -1,17 +1,31 @@
 #configure
-  color: rgba(#fff, 0.85)
+  margin: 32px
+  h1
+    margin-bottom: 16px
+    font-size: 36px
   .option
-    input, select, p
+    margin-bottom: 8px
+    p, select, input
       display: inline-block
-      margin: 8px
+      margin: 0 8px
+      padding: 4px 8px
+
+    p
+      width: 216px
+    input, select
+      background: transparent
+      border-left: 2px solid $grey
       font-size: 16px
-      padding: 4px
-
-    input
-      border: 2px solid rgba(#fff, 0.85)
-      background-color: transparent
-      color: rgba(#fff, 0.85)
-
       +transition(0.3s)
-      &:hover, &:active, &:focus
-        background-color: rgba(#fff, 0.05)
+      &:focus
+        background-color: $white
+    input
+      width: 50px
+    select
+      option
+        background-color: $white
+        outline: none
+        font-size: 14px
+        &:hover, &:focus
+          background-color: $main
+          color: $white

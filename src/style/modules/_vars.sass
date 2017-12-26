@@ -5,8 +5,8 @@ $green:   #2ecc71
 $red:     #e74c3c
 $grey:    #757575
 
-=transition($t)
-  transition: all #{$t} cubic-bezier(.25,.8,.25,1)
+=transition($t, $a: all)
+  transition: #{$a} #{$t} cubic-bezier(.25,.8,.25,1)
 
 =shadow($level)
   @if $level == 0
