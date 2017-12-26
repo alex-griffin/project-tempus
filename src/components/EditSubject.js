@@ -52,7 +52,7 @@ export default class EditSubject extends Component {
       } else {
         api.setSubject(subject.name, subject);
       }
-      this.setState({subject})
+      this.setState({ subject })
       api.saveLocalSorage();
     } else {
       alert("your subject needs a name")

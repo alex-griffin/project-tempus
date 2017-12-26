@@ -3,6 +3,12 @@
   max-width: 960px
   .question
     margin-bottom: 16px
+    &.correct
+      background-color: rgba($green, 0.2)
+      pointer-events: none
+    &.incorrect
+      background-color: rgba($red, 0.2)
+      pointer-events: none
     p
       font-size: 16px
   .textResponce

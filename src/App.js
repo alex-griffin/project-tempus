@@ -30,6 +30,7 @@ class App extends Component {
               <Route path="/app/subjects/test/configure" component={ TestConfigure } />
               <Route path="/app/subjects/:subject/edit" exact component={ EditSubject } />
               <Route path="/app/subjects/:subject/test" exact component={ SubjectTest } />
+              <Route path="/app/subjects/:subject/test/grade" exact component={ SubjectTest } />
 
               <Route path="/app/subjects/:subject" component={ Subject } />
               <Route path="*" component={ NotFound } />

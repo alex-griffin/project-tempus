@@ -14,9 +14,19 @@ export default class TestConfigure extends Component{
   }
 
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    if(event.target.name.indexOf(".") !== -1) {
+      let questions = { ...this.state.questions };
+      questions[event.target.name.split(".")[1]] = event.target.value
+      this.setState({ questions });
+    } else {
+      this.setState({[event.target.name]: event.target.value});
+    }
   }
+  validate() {
+    if(api.getAll()) {
 
+    }
+  }
   generateState() {
     return {
       questions: {
@@ -28,25 +38,26 @@ export default class TestConfigure extends Component{
   }
 
   render() {
-    let options = api.getAll().map((item, i) => <option key={i} value={ item.name }>{ item.name }</option>)
+    let options = (api.getAll().map((item, i) => <option key={i} value={ item.name }>{ item.name }</option>))
+    console.log(options)
     return (
       <div id="configure">
       <h1>New Test: </h1>
       <div className="selectParent option">
         <p>Subject: </p>
         <select name="subject"
-                onChange={this.handleChange.bind(this)}
-                value={this.state.subject}>
+                value={this.state.subject}
+                onChange={this.handleChange.bind(this)} >
           { options }
         </select>
       </div>
       <div className="inputParent option">
         <p>Multiple Choice: </p>
-        <input name="questions.multipleChoice"
-               onChange={this.handleChange.bind(this)}
-               type="number"
+        <input type="number"
+               name="questions.multipleChoice"
                value={this.state.questions.multipleChoice}
-               min={0}/>
+               onChange={this.handleChange.bind(this)}
+               min={0} />
       </div>
       <div className="inputParent option">
         <p>Text Responce: </p>
