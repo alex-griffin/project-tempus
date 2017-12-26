@@ -94,7 +94,7 @@ export default class NotFound extends Component {
           </Link>
         </button>
 
-        <img id="horse" src={ horse }/>
+        <img id="horse" src={ horse } alt=""/>
       </div>
     )
   }

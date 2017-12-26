@@ -37,9 +37,12 @@ export default class SubjectTest extends Component {
       let question = answers.map((item, i) => {
         return (
           <div className="answer" key={i}>
-            <label>
-              <input name={ item.prompt } value={ i === correctAnswer } type="radio"/>
-              { item.answer }
+            <label className="answerOption">
+              <input name={ answers[correctAnswer].prompt }
+                     value={ i === correctAnswer }
+                     type="radio"/>
+              <span>{ item.answer }</span>
+              <span className="border"></span>
             </label>
           </div>
         )
@@ -48,7 +51,9 @@ export default class SubjectTest extends Component {
       questions.push((
         <div key={questions.length} className="question multipleChoice">
           <p>{ answers[correctAnswer].prompt }</p>
-          { question }
+          <div className="answerOptions">
+            { question }
+          </div>
         </div>
       ))
     }

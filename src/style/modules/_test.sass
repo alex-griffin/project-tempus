@@ -1,0 +1,45 @@
+#test
+  margin: 32px
+  max-width: 960px
+  .question
+    margin-bottom: 16px
+  .multipleChoice
+    .answerOptions
+      display: flex
+      align-items: center
+      flex-wrap: wrap
+      padding: 4px
+
+      .answer
+        width: calc(50% - 8px)
+        background-color: $white
+        margin: 4px
+        position: relative
+
+        label
+          width: 100%
+          position: relative
+          display: block
+          padding: 8px 16px
+          .border
+            position: absolute
+            height: 100%
+            width: 0
+            background-color: $grey
+            top: 0
+            left: 0
+            +transition(0.3s)
+          &:hover
+            .border
+              width: 8px
+
+          input[type=radio]
+            position: absolute
+            top: 0
+            left: 0
+            opacity: 0
+            height: 100%
+            width: 100%
+            cursor: pointer
+            &:checked ~ .border
+              width: 8px
