@@ -107,6 +107,12 @@ html, body {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start; }
+  #subjectList .sorry {
+    width: 100%;
+    color: #757575;
+    text-align: center;
+    font-size: 32px;
+    margin: 32px; }
 
 .subjectCard {
   max-width: 300px;

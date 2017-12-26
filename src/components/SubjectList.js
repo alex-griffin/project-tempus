@@ -33,7 +33,6 @@ export default class Home extends Component {
       this.setState({focused: true});
     } else {
       this.setState({focused: false});
-      this.setState({showPlaceHolder: true})
     }
   }
 
@@ -42,7 +41,12 @@ export default class Home extends Component {
       return (
         <SubjectCard key={i} subject={e}></SubjectCard>
       )
-    })
+    });
+    if(!cards.length) {
+      cards = (
+        <p class="sorry">¯\_(ツ)_/¯ <br/> We found no subjects that match that search</p>
+      )
+    }
     return (
         <div id="subjectList">
           <div className={"subjectSearchInput " + (this.state.focused ? "focused" : "")}>
