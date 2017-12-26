@@ -8,7 +8,9 @@ export default class Home extends Component {
     super(props);
     this.state = {
       subjects: api.getAll(),
-      get filteredSubjects() {return this.subjects}
+      get filteredSubjects() {return this.subjects},
+      showPlaceHolder: true,
+      focused: false
     }
   }
 
@@ -18,21 +20,40 @@ export default class Home extends Component {
       return(e.name.indexOf(event.target.value) !== -1)
     });
     this.setState({filteredSubjects: updatedList})
+    if(event.target.value.length === 0) {
+      this.setState({showPlaceHolder: true})
+    } else {
+      this.setState({showPlaceHolder: false})
+    }
+
+  }
+
+  handleFocus(t) {
+    if(t) {
+      this.setState({focused: true});
+    } else {
+      this.setState({focused: false});
+      this.setState({showPlaceHolder: true})
+    }
   }
 
   render() {
     let cards = this.state.filteredSubjects.map((e, i, arr) => {
       return (
-          <SubjectCard key={i} subject={e}></SubjectCard>
+        <SubjectCard key={i} subject={e}></SubjectCard>
       )
     })
     return (
         <div id="subjectList">
-          <div className="subjectSearchInput">
-            <p><i class="material-icons">search</i> Search</p>
+          <div className={"subjectSearchInput " + (this.state.focused ? "focused" : "")}>
+            <p style={{display: this.state.showPlaceHolder ? "inline-block" : "none"}}>
+              <i className="material-icons">search</i>
+              <span>Search</span>
+            </p>
             <input type="text"
-                   placeholder=""
                    onChange={this.filterList.bind(this)}
+                   onFocus={() => {this.handleFocus(true)}}
+                   onBlur={() => {this.handleFocus(false)}}
                    id="subjectSearch" />
           </div>
 
