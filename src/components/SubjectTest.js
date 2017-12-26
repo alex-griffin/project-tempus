@@ -11,6 +11,10 @@ export default class SubjectTest extends Component {
       subject: api.getName(props.match.params.subject),
     }
   }
+  autoResize(event) {
+    event.target.style.height = 0
+    event.target.style.height = event.target.scrollHeight + "px"
+  }
 
   generateTest() {
     function getRandom(arr, n, not) {
@@ -31,9 +35,14 @@ export default class SubjectTest extends Component {
     }
 
     let questions = [];
+    console.log(this.state.questions)
+    let configQs = getRandom(this.state.subject.cards,
+                             (this.state.questions.multipleChoice +
+                              this.state.questions.textResponce))
+    let MCquestions = configQs.slice(0, this.state.questions.multipleChoice);
 
-    let MCquestions = getRandom(this.state.subject.cards,
-                                this.state.questions.multipleChoice)
+    let FRquestions = configQs.slice(this.state.questions.multipleChoice,
+                                     this.state.questions.multipleChoice + this.state.questions.textResponce);
 
     for(let i = 0; i < MCquestions.length; i++) {
       let answers = [];
@@ -71,7 +80,20 @@ export default class SubjectTest extends Component {
       ))
     }
 
+    for(let i = 0; i < FRquestions.length; i++) {
 
+      questions.push((
+        <div key={questions.length} className="question textResponce">
+          <p>{ FRquestions[i].prompt }</p>
+          <div className="textAnswer answer">
+            <textarea name={ FRquestions[i].answer }
+                      className="textAnswer"
+                      onChange={this.autoResize.bind(this)} />
+                        <span className="border"></span>
+          </div>
+        </div>
+      ))
+    }
 
     return questions;
   }
@@ -88,6 +110,9 @@ export default class SubjectTest extends Component {
       <div id="test">
         <form onSubmit={this.handleSubmit}>
           { this.generateTest() }
+          <div className="cf">
+            <button className="button">submit</button>
+          </div>
         </form>
       </div>
     )

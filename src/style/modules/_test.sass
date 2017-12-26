@@ -3,13 +3,42 @@
   max-width: 960px
   .question
     margin-bottom: 16px
+    p
+      font-size: 16px
+  .textResponce
+    .answer
+      padding: 8px 4px
+      position: relative
+      width: 100%
+      .textAnswer
+        border-left: 0 solid $grey
+        resize: none
+        padding: 8px 16px
+        overflow: hidden
+        white-space: pre-wrap
+        word-wrap: break-word
+        width: 100%
+        height: 100%
+        display: block
+        +transition(0.3s, border-left)
+        &:focus ~ .border
+          width: 8px
+      .border
+        content: ""
+        position: absolute
+        height: calc(100% - 16px)
+        width: 0
+        background-color: $grey
+        top: 8px
+        left: 4px
+        +transition(0.3s)
+
   .multipleChoice
     .answerOptions
       display: flex
       align-items: center
       flex-wrap: wrap
       padding: 4px
-
       .answer
         width: calc(50% - 8px)
         background-color: $white
@@ -43,3 +72,8 @@
             cursor: pointer
             &:checked ~ .border
               width: 8px
+  .cf
+    +clearfix()
+    button
+      background-color: $white
+      float: right
