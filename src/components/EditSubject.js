@@ -28,10 +28,10 @@ export default class EditSubject extends Component {
       let newQs = [];
 
       for(let i = 0; i < newQElements.length; i++) {
-        if(newQElements[i].children[0].value && newQElements[i].children[2].value) {
+        if(newQElements[i].children[0].value && newQElements[i].children[1].value) {
 
           newQs.push(api.getNewCard(newQElements[i].children[0].value,
-                                    newQElements[i].children[2].value));
+                                    newQElements[i].children[1].value));
 
           let index = newQs.length - 1;
 
@@ -45,7 +45,6 @@ export default class EditSubject extends Component {
           }
         }
       }
-      console.log(newQs)
       subject.cards = newQs;
 
       if(name) {
@@ -77,19 +76,39 @@ export default class EditSubject extends Component {
     this.setState({subject});
   }
 
+  autoResize(event) {
+    event.target.style.height = 0
+    event.target.style.height = event.target.scrollHeight + "px"
+  }
+
   render() {
     let cards = [];
     cards = this.state.subject.cards.map((item, i) => {
       return (
         <div key={i + this.num} className="card">
-          <input type="text" className="prompt textInput" defaultValue={item.prompt} ref={(input) => this.input = input} />
-          <span>:</span>
-          <input type="text" className="answer textInput" defaultValue={item.answer} ref={(input) => this.input = input} />
-          <button className="remove" onClick={() => this.removeCard(i)}>X</button>
+          <textarea type="text"
+                    className="prompt textInput"
+                    defaultValue={item.prompt} ref={(input) => this.input = input}
+                    onChange={this.autoResize.bind(this)}
+                    rows="1"></textarea>
+          <textarea type="text"
+                    className="answer textInput"
+                    defaultValue={item.answer} ref={(input) => this.input = input}
+                    onChange={this.autoResize.bind(this)}
+                    rows="1"></textarea>
+          <button className="remove"
+                  onClick={() => this.removeCard(i)}>
+                    <i className="material-icons">close</i>
+                  </button>
         </div>
       )
     });
-    this.num += cards.length
+    this.num += cards.length;
+    if(cards.length === 0) {
+      cards = (
+        <p class="sorry">¯\_(ツ)_/¯ <br/> No questions why not add some?</p>
+      )
+    }
     return (
       <div id="edit">
 
@@ -99,15 +118,17 @@ export default class EditSubject extends Component {
         </div>
         <div className="edit">
           <p>Description: </p>
-          <textarea id="editDescription" placeholder="description" defaultValue={this.state.subject.description}></textarea>
+          <textarea id="editDescription"
+                    placeholder="description"
+                    defaultValue={this.state.subject.description}
+                    onChange={this.autoResize.bind(this)}
+                    ></textarea>
         </div>
         { cards }
-        <div className="buttons">
-          <button className="add" onClick={this.addCard.bind(this)}>+</button>
+        <div className="addfix buttons">
+          <button className="add" onClick={this.addCard.bind(this)}><i className="material-icons">add</i></button>
         </div>
         <div className="buttons">
-
-
           <button className="button">Import</button>
           <button className="button">Export</button>
             <button className="button" onClick={this.saveAll.bind(this)}>Save</button>

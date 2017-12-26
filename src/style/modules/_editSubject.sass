@@ -1,0 +1,59 @@
+#edit
+  margin: 32px
+  max-width: 960px
+  .sorry
+    width: 100%
+    color: $grey
+    text-align: center
+    font-size: 32px
+    margin: 32px 0
+  .edit
+    p
+      font-size: 24px
+  .editName
+    p
+      font-size: 36px
+    input
+      font-size: 32px
+
+  #editDescription, #editName
+    width: 100%
+    margin-bottom: 32px
+  textarea, input
+    border-left: 2px solid $grey
+    resize: none
+    padding: 8px 4px
+    overflow: hidden
+    white-space: pre-wrap
+    word-wrap: break-word
+    margin: 0 16px
+    flex: 1
+    font-size: 16px
+    background-color: transparent
+    +transition(0.3s)
+    &:focus
+      border-left: 2px solid $main
+  .card
+    background-color: $white
+    margin-bottom: 8px
+    padding: 16px 32px
+    display: flex
+    align-items: center
+
+    .remove
+      width: 32px
+      height: 32px
+      cursor: pointer
+      i
+        vertical-align: middle
+
+  .addfix
+    +clearfix()
+    .add
+      height: 56px
+      width: 56px
+      float: right
+      cursor: pointer
+  .buttons
+    button
+      background-color: $white
