@@ -13,27 +13,40 @@ export default class SubjectTest extends Component {
   }
 
   generateTest() {
-    function getRandom(arr, n) {
+    function getRandom(arr, n, not) {
       var result = new Array(n),
-          len = arr.length,
-          taken = new Array(len);
+        len = arr.length,
+        taken = new Array(len);
       if (n > len)
-          throw new RangeError("getRandom: more elements taken than available");
+        throw new RangeError("getRandom: more elements taken than available");
+      console.log("not: " + not)
       while (n--) {
-          var x = Math.floor(Math.random() * len);
-          result[n] = arr[x in taken ? taken[x] : x];
+        var x = Math.floor(Math.random() * len);
+        if(x !== not) {
+          result[n] = arr[(x in taken) ? taken[x] : x];
           taken[x] = --len;
+        } else n++
       }
       return result;
     }
 
     let questions = [];
 
-    for(let i = 0; i < this.state.questions.multipleChoice; i++) {
+    let MCquestions = getRandom(this.state.subject.cards,
+                                this.state.questions.multipleChoice)
 
-      let answers = getRandom(this.state.subject.cards, 4)
-      let correctAnswer = Math.floor(Math.random() * answers.length)
+    for(let i = 0; i < MCquestions.length; i++) {
+      let answers = [];
+      answers.push(MCquestions[i]);
+      let not = this.state.subject.cards.indexOf(MCquestions[i]);
+      let wrong = getRandom(this.state.subject.cards, 3, not);
+      console.log(wrong)
 
+      answers = answers.concat(wrong)
+      answers = answers.sort(() => Math.random() - 0.5)
+
+
+      let correctAnswer = answers.indexOf(MCquestions[i]);
       let question = answers.map((item, i) => {
         return (
           <div className="answer" key={i}>
