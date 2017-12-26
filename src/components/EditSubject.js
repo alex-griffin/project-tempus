@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Link, Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 import api from "../services/api.js"
 
 
@@ -70,7 +70,7 @@ export default class EditSubject extends Component {
   removeCard(i) {
     this.saveAll(true);
     let subject = {...this.state.subject};
-    subject.cards = subject.cards.filter((_, index) => i != index);
+    subject.cards = subject.cards.filter((_, index) => i !== index);
     this.setState({subject});
   }
 

@@ -140,6 +140,7 @@ html, body {
         padding: 2px;
         margin: 4px;
         background-color: rgba(0, 0, 0, 0.7);
+        pointer-events: none;
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
       .subjectCard .progress .atmptData:hover .tooltip {
         opacity: 1; }
@@ -266,3 +267,29 @@ html, body {
       #configure .option select option:hover, #configure .option select option:focus {
         background-color: #2c3e50;
         color: #fdfdfd; }
+
+.notfound {
+  overflow: hidden;
+  max-height: 100vh; }
+  .notfound h1 {
+    text-align: center;
+    font-weight: 300;
+    margin: 64px auto;
+    max-width: 640px; }
+  .notfound button {
+    margin: 0 auto;
+    display: block;
+    background-color: #fdfdfd; }
+
+#horse {
+  height: 600px;
+  width: 600px;
+  transform: rotate(-45deg);
+  position: absolute;
+  bottom: -600px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  #horse.show {
+    bottom: -300px; }
+
+body.ofh {
+  overflow: hidden; }

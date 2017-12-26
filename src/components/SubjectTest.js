@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Link, Redirect } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import api from "../services/api.js"
 
 
@@ -38,7 +38,7 @@ export default class SubjectTest extends Component {
         return (
           <div className="answer" key={i}>
             <label>
-              <input name={ item.prompt } value={ i == correctAnswer } type="radio"/>
+              <input name={ item.prompt } value={ i === correctAnswer } type="radio"/>
               { item.answer }
             </label>
           </div>

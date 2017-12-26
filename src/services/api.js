@@ -415,7 +415,7 @@ const api = {
   },
   getName: function(name) {
     if(!this.subjects) this.getAll();
-    return this.subjects.filter((e) => e.name == name)[0] || false;
+    return this.subjects.filter((e) => e.name === name)[0] || false;
   },
   getNewSubject: function() {
     return {
@@ -446,7 +446,7 @@ const api = {
     } else {
       let index = null;
       for(let i = 0; i < this.subjects.length; i++) {
-        if(this.subjects[i].name == name) {
+        if(this.subjects[i].name === name) {
           index = i;
           break;
         }
@@ -464,7 +464,7 @@ const api = {
   deleteName: function(name) {
     let index = null;
     for(let i = 0; i < this.subjects.length; i++) {
-      if(this.subjects[i].name == name) {
+      if(this.subjects[i].name === name) {
         index = i;
         break;
       }

@@ -44,7 +44,7 @@ export default class Home extends Component {
     });
     if(!cards.length) {
       cards = (
-        <p class="sorry">¯\_(ツ)_/¯ <br/> We found no subjects that match that search</p>
+        <p className="sorry">¯\_(ツ)_/¯ <br/> We found no subjects that match that search</p>
       )
     }
     return (

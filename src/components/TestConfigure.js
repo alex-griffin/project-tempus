@@ -1,6 +1,5 @@
 import React, { Component } from "react"
-import { Link, Redirect } from "react-router-dom"
-import Minicard from "./MiniCard.js"
+import { Link } from "react-router-dom"
 import api from "../services/api.js"
 
 
