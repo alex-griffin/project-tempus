@@ -10,7 +10,7 @@ export default class SubjectTest extends Component {
     this.state = {
       ...props.location.state,
       subject: api.getName(props.match.params.subject),
-      redirect: false
+      redirect: false,
     }
   }
   autoResize(event) {
@@ -18,8 +18,12 @@ export default class SubjectTest extends Component {
     event.target.style.height = event.target.scrollHeight + "px"
   }
 
+  componentDidMount() {
+    this.generateTest()
+  }
+
   generateTest() {
-    if(this.state.questions) {
+    if(this.state.questions && !this.state.answerData) {
       function getRandom(arr, n, not) {
         var result = new Array(n),
           len = arr.length,
@@ -94,44 +98,60 @@ export default class SubjectTest extends Component {
           </div>
         ))
       }
-      this.state.questionElements = questions
+      this.setState({ questionElements: questions })
       return questions;
+    } else if(this.state.answerData) {
+      
     }
     return (
       <h1 className="sorry">
         ¯\_(ツ)_/¯ <br/>
-        No test specified
+        Invalid Test or subject
       </h1>
     )
   }
 
   gradeMCquestion(element) {
     let answer = element.querySelector('input[type="radio"][value="true"]')
-    console.log(answer)
-    return answer.checked ? "correct" : "incorrect"
+    element.classList.add(answer.checked ? "correct" : "incorrect")
+    return answer.checked
   }
 
   gradeFRquestion(element) {
-    elt answer = 
+    let answer = element.querySelector("textarea")
+    element.classList.add((answer.value === answer.name) ? "correct" : "incorrect");
+    return (answer.value === answer.name)
   }
 
   gradeTest() {
     let answerData = []
     let questions = document.getElementsByClassName("question")
-    console.log(questions);
 
     for(let i = 0; i < questions.length; i++) {
       if(questions[i].classList.contains("multipleChoice")) {
-        questions[i].classList.add(this.gradeMCquestion(questions[i]))
+        answerData.push({
+          index: this.state.subject.cards.indexOf(
+                   this.state.subject.cards.filter(
+                     card => card.prompt === questions[i].querySelector("p").innerHTML)),
+          correct: this.gradeMCquestion(questions[i])
+        })
+      } else if(questions[i].classList.contains("textResponce")) {
+        answerData.push({
+          index: this.state.subject.cards.indexOf(
+                   this.state.subject.cards.filter(
+                     card => card.prompt === questions[i].querySelector("p").innerHTML)),
+          correct: this.gradeFRquestion(questions[i])
+        })
       }
-
     }
+    console.log(document.getElementById("questions"))
+    // this.setState({questionElements: document.getElementById("questions")})
+    this.setState({answerData})
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.gradeTest()
-    // this.setState({redirect: true})
   }
 
   render() {
@@ -140,7 +160,7 @@ export default class SubjectTest extends Component {
         <Redirect to="/app/subjects"></Redirect>
       )
     }
-    if(this.state.redirect) {
+    if(this.state.showResults) {
       return(
         <Redirect to={{pathname: "/app/subjects/" + this.state.subject.name + "/test/grade",
                        state: {
@@ -151,8 +171,10 @@ export default class SubjectTest extends Component {
     }
     return (
       <div id="test">
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          { this.generateTest() }
+        <form onSubmit={this.handleSubmit.bind(this)} className="questions">
+          <div id="questions">
+            { this.state.questionElements }
+          </div>
           <div className="cf">
             <button className="button" type="submit">
               submit
