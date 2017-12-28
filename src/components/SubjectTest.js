@@ -79,15 +79,16 @@ export default class SubjectTest extends Component {
 
   generateTest() {
 
-    function frQuestion(key, question, corrrect = "") {
-
+    function frQuestion(key, question, corrrect = "", value = "") {
+      console.log(question)
       return (
-        <div key={key} className={"question textResponce " + corrrect}>
+        <div key={ key } className={"question textResponce " + corrrect}>
           <p className="prompt">{ question.prompt }</p>
           <div className="textAnswer answer">
             <textarea name={ question.answer }
-                      className="textAnswer"
-                      onChange={this.autoResize.bind(this)} />
+                      className="textInputAnswer"
+                      onChange={ this.autoResize.bind(this) }
+                      defaultValue={ value } />
                         <span className="border"></span>
           </div>
         </div>
@@ -131,18 +132,27 @@ export default class SubjectTest extends Component {
         }
       } else if(this.state.answerData) {
         for(let i = 0; i < this.state.answerData.length; i++) {
-          if(this.state.answerData[i].type == "multipleChoice") {
+          if(this.state.answerData[i].type === "multipleChoice") {
             questions.push(
-              <MCQuestion key={(questions.length + 1) * "-1"}
+              <MCQuestion key={(questions.length + 1) * -1}
                           answers={this.state.answerData[i].answers}
                           correct={this.state.answerData[i].correct}
                           correctAnswer={this.state.answerData[i].correctAnswer}
                           selected={this.state.answerData[i].selected}>
               </MCQuestion>
             )
+          } else if(this.state.answerData[i].type === "textResponce") {
+            questions.push(
+              frQuestion.call(this,
+                              (questions.length + 1) * -1,
+                              this.state.answerData[i].question,
+                              this.state.answerData[i].correct,
+                              this.state.answerData[i].value)
+            )
           }
         }
       }
+
       this.setState({ questionElements: questions })
     } else {
       return (
@@ -191,17 +201,15 @@ export default class SubjectTest extends Component {
 
         let cardIndex = this.state.subject.cards.indexOf(
           this.state.subject.cards.filter((card) => {
-            return questions[i].querySelector("p").innerHTML === card.prompt
+            return questions[i].querySelector(".prompt").innerHTML === card.prompt
           })[0]
         )
 
-        console.log(this.state.subject.cards[cardIndex])
         if(selected === correctAnswer) {
           this.state.subject.cards[cardIndex].correct++
         }
         this.state.subject.cards[cardIndex].attempted++
-        console.log(this.state.subject);
-        console.log(api.getName(this.state.subject.name))
+
         answerData.push({
           answers,
           correct: this.gradeMCquestion(questions[i]),
@@ -210,12 +218,25 @@ export default class SubjectTest extends Component {
           selected
         })
       } else if(questions[i].classList.contains("textResponce")) {
+        let cardIndex = this.state.subject.cards.indexOf(
+          this.state.subject.cards.filter((card) => {
+            return questions[i].querySelector(".prompt").innerHTML === card.prompt
+          })[0]
+        )
+        
+        let answer = questions[i].querySelector("textarea")
+        if(answer.value === answer.name) {
+          this.state.subject.cards[cardIndex].correct++
+        }
+        this.state.subject.cards[cardIndex].attempted++
         answerData.push({
-          index: this.state.subject.cards.indexOf(
-                   this.state.subject.cards.filter(
-                     card => {card.prompt === questions[i].querySelector(".prompt").innerHTML})[0]),
+          question: this.state.subject.cards.filter(
+            (card) => {return card.answer === questions[i].querySelector(".textInputAnswer").name &&
+                              card.prompt === questions[i].querySelector(".prompt").innerHTML
+          })[0],
           correct: this.gradeFRquestion(questions[i]),
-          type: "textResponce"
+          type: "textResponce",
+          value: questions[i].querySelector(".textInputAnswer").value
         })
       }
     }

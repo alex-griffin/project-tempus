@@ -161,6 +161,7 @@ html, body {
   #subject .actions {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     margin-bottom: 32px; }
   #subject .questions {
     padding: 16px 0; }
@@ -287,7 +288,7 @@ html, body {
     padding: 8px 4px;
     position: relative;
     width: 100%; }
-    #test .textResponce .answer .textAnswer {
+    #test .textResponce .answer .textInputAnswer {
       border-left: 0 solid #757575;
       resize: none;
       padding: 8px 16px;
@@ -298,7 +299,7 @@ html, body {
       height: 100%;
       display: block;
       transition: border-left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-      #test .textResponce .answer .textAnswer:focus ~ .border {
+      #test .textResponce .answer .textInputAnswer:focus ~ .border {
         width: 8px; }
     #test .textResponce .answer .border {
       content: "";
@@ -379,7 +380,8 @@ html, body {
     .popup button i {
       vertical-align: middle; }
   .popup p {
-    flex: 1; }
+    flex: 1;
+    margin-right: 16px; }
 
 .notfound {
   overflow: hidden;
