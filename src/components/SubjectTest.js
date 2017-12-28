@@ -3,21 +3,18 @@ import { Redirect, Link } from "react-router-dom"
 import api from "../services/api.js"
 const queryString = require('query-string');
 
-function getRandom(arr, n, not) {
-  var result = new Array(n),
-    len = arr.length,
-    taken = new Array(len);
-  if (n > len)
-    throw new RangeError("getRandom: more elements taken than available");
-  while (n--) {
-    var x = Math.floor(Math.random() * len);
-    if(x !== not) {
-      result[n] = arr[(x in taken) ? taken[x] : x];
-      taken[x] = --len;
-    } else n++
-  }
-  return result;
+function getRandom(arr, n, not = -1) {
+  let result = arr.reduce((acc, cur, i) => {
+    if(acc.indexOf(cur) === -1 && i !== not && acc.length < n) {
+      acc.push(cur)
+    }
+    return acc
+  }, []);
+
+  return result.sort(() => .5 - Math.random());
+
 }
+
 
 class MCQuestion extends Component {
   constructor(props) {
@@ -101,6 +98,7 @@ export default class SubjectTest extends Component {
         let configQs = getRandom(this.state.subject.cards,
                                  parseInt(this.state.questions.multipleChoice, 10) +
                                  parseInt(this.state.questions.textResponce, 10))
+        console.log(configQs)
         let MCquestions = configQs.slice(0, this.state.questions.multipleChoice);
 
         let FRquestions = configQs.slice(this.state.questions.multipleChoice,
@@ -223,7 +221,7 @@ export default class SubjectTest extends Component {
             return questions[i].querySelector(".prompt").innerHTML === card.prompt
           })[0]
         )
-        
+
         let answer = questions[i].querySelector("textarea")
         if(answer.value === answer.name) {
           this.state.subject.cards[cardIndex].correct++
