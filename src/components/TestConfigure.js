@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
+import InfoPopup from "./InfoPopup.js"
 import api from "../services/api.js"
 
 
@@ -21,11 +22,20 @@ export default class TestConfigure extends Component{
     } else {
       this.setState({[event.target.name]: event.target.value});
     }
+    this.setState({error: false})
+
   }
   validate() {
-    if(api.getAll()) {
-
+    if(api.getName(this.state.subject).cards.length < parseInt(this.state.questions.multipleChoice, 10) + parseInt(this.state.questions.textResponce, 10)) {
+      this.setState({error: "you must have a total question number less than or equal to the number of questions in the subject"})
+    } else if(this.state.questions.multipleChoice + this.state.questions.textResponce <= 0) {
+      this.setState({error: "you must have some number of questions"})
+    } else {
+      this.setState({error: false})
+      this.generateState();
+      this.setState({redirect: true})
     }
+
   }
   generateState() {
     return {
@@ -39,9 +49,24 @@ export default class TestConfigure extends Component{
 
   render() {
     let options = (api.getAll().map((item, i) => <option key={i} value={ item.name }>{ item.name }</option>))
-    console.log(options)
+    if(this.state.redirect) {
+      return (
+        <Redirect to={{pathname: "/app/subjects/" + this.state.subject + "/test",
+                       state: this.generateState()}}></Redirect>
+      )
+    }
+    let error;
+    if(this.state.error) {
+      error = (
+        <InfoPopup key={Math.random()}
+                   className="error"
+                   show={ true }
+                   message={this.state.error}></InfoPopup>
+      )
+    }
     return (
       <div id="configure">
+      {error}
       <h1>New Test: </h1>
       <div className="selectParent option">
         <p>Subject: </p>
@@ -67,10 +92,8 @@ export default class TestConfigure extends Component{
                value={this.state.questions.textResponce}
                min={0}/>
       </div>
-      <Link to={{pathname: "/app/subjects/" + this.state.subject + "/test",
-                 state: this.generateState()}}>
-        <button className="button">Start Test</button>
-      </Link>
+
+        <button className="button" onClick={this.validate.bind(this)}>Start Test</button>
 
       </div>
 

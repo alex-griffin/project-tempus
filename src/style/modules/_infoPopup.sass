@@ -1,0 +1,29 @@
+.popup
+  &.error
+    background-color: $red
+  &.good
+    background-color: $green
+  &.netural
+    background-color: $blue
+  &.show
+    top: 120px
+
+  position: fixed
+  top: -32px
+  display: flex
+  align-items: center
+  z-index: 10
+  padding: 8px 16px
+  max-width: 720px
+  +transition(0.3s)
+  +shadow(2)
+  p, button
+    display: inline-block
+  button
+    height: 32px
+    width: 32px
+    text-align: center
+    i
+      vertical-align: middle
+  p
+    flex: 1
