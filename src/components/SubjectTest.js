@@ -19,6 +19,46 @@ function getRandom(arr, n, not) {
   return result;
 }
 
+class MCQuestion extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      answers: props.answers,
+      correct: props.correct,
+      correctAnswer: props.correctAnswer,
+      selected: props.selected
+    }
+  }
+  render() {
+    let question = this.state.answers.map((item, i) => {
+      return (
+        <div className="answer" key={i}>
+          <label className="answerOption">
+            <input name={ this.state.answers[this.state.correctAnswer].prompt }
+                   value={ i === this.state.correctAnswer }
+                   defaultChecked={ this.state.selected === i }
+                   type="radio"/>
+            <span>{ item.answer }</span>
+            <span className="border"></span>
+          </label>
+        </div>
+      )
+    })
+    return (
+      <div className={"question multipleChoice " + this.state.correct}>
+        <p className="prompt">{ this.state.answers[this.state.correctAnswer].prompt }</p>
+        <div className="answerOptions">
+          { question }
+        </div>
+      </div>
+    )
+  }
+}
+
+
+
+
+
 export default class SubjectTest extends Component {
   constructor(props) {
     super(props)
@@ -38,46 +78,12 @@ export default class SubjectTest extends Component {
   }
 
   generateTest() {
-    function mcQuestion(index, q, correct = "") {
-
-      let answers = [];
-      answers.push(q);
-      let not = this.state.subject.cards.indexOf(q);
-      let wrong = getRandom(this.state.subject.cards, 3, not);
-
-      answers = answers.concat(wrong)
-      answers = answers.sort(() => Math.random() - 0.5)
-
-      let correctAnswer = answers.indexOf(q);
-
-      let question = answers.map((item, i) => {
-        return (
-          <div className="answer" key={i}>
-            <label className="answerOption">
-              <input name={ answers[correctAnswer].prompt }
-                     value={ i === correctAnswer }
-                     type="radio"/>
-              <span>{ item.answer }</span>
-              <span className="border"></span>
-            </label>
-          </div>
-        )
-      })
-      return (
-        <div key={index} className="question multipleChoice">
-          <p>{ answers[correctAnswer].prompt }</p>
-          <div className="answerOptions">
-            { question }
-          </div>
-        </div>
-      )
-    }
 
     function frQuestion(key, question, corrrect = "") {
 
       return (
         <div key={key} className={"question textResponce " + corrrect}>
-          <p>{ question.prompt }</p>
+          <p className="prompt">{ question.prompt }</p>
           <div className="textAnswer answer">
             <textarea name={ question.answer }
                       className="textAnswer"
@@ -100,9 +106,22 @@ export default class SubjectTest extends Component {
                                          this.state.questions.multipleChoice + this.state.questions.textResponce);
 
         for(let i = 0; i < MCquestions.length; i++) {
-          questions.push(
-            mcQuestion.call(this, questions.length, MCquestions[i])
-          )
+          let answers = [];
+          answers.push(MCquestions[i]);
+          let not = this.state.subject.cards.indexOf(MCquestions[i]);
+          let wrong = getRandom(this.state.subject.cards, 3, not);
+
+          answers = answers.concat(wrong)
+          answers = answers.sort(() => Math.random() - 0.5)
+
+          let correctAnswer = answers.indexOf(MCquestions[i]);
+          questions.push((
+            <MCQuestion key={questions.length}
+                        answers={answers}
+                        correct={""}
+                        correctAnswer={correctAnswer}
+                        selected={""}></MCQuestion>
+          ))
         }
 
         for(let i = 0; i < FRquestions.length; i++) {
@@ -113,12 +132,18 @@ export default class SubjectTest extends Component {
       } else if(this.state.answerData) {
         for(let i = 0; i < this.state.answerData.length; i++) {
           if(this.state.answerData[i].type == "multipleChoice") {
-            questions.push()
+            questions.push(
+              <MCQuestion key={(questions.length + 1) * "-1"}
+                          answers={this.state.answerData[i].answers}
+                          correct={this.state.answerData[i].correct}
+                          correctAnswer={this.state.answerData[i].correctAnswer}
+                          selected={this.state.answerData[i].selected}>
+              </MCQuestion>
+            )
           }
         }
       }
       this.setState({ questionElements: questions })
-      return questions;
     } else {
       return (
         <h1 className="sorry">
@@ -131,14 +156,12 @@ export default class SubjectTest extends Component {
 
   gradeMCquestion(element) {
     let answer = element.querySelector('input[type="radio"][value="true"]')
-    element.classList.add(answer.checked ? "correct" : "incorrect")
-    return answer.checked
+    return answer.checked ? "correct" : "incorrect"
   }
 
   gradeFRquestion(element) {
     let answer = element.querySelector("textarea")
-    element.classList.add((answer.value === answer.name) ? "correct" : "incorrect");
-    return (answer.value === answer.name)
+    return (answer.value === answer.name) ? "correct" : "incorrect"
   }
 
   gradeTest() {
@@ -147,31 +170,52 @@ export default class SubjectTest extends Component {
 
     for(let i = 0; i < questions.length; i++) {
       if(questions[i].classList.contains("multipleChoice")) {
+        let radios = questions[i].querySelectorAll("input[type='radio']");
+
+        let answers = Array.from(radios).map((radio) => {
+          for(let i = 0; i < this.state.subject.cards.length; i++) {
+            if(this.state.subject.cards[i].answer === radio.nextSibling.innerText) {
+              return this.state.subject.cards[i]
+            }
+          }
+          return ""
+        });
+        let selected = Array.from(radios).indexOf(Array.from(radios).filter((radio) => {
+          return radio.checked
+        })[0])
+
+        let correctAnswer = Array.from(radios).indexOf(Array.from(radios).filter((radio) => {
+          return radio.value === "true"
+        })[0])
+        console.log(answers)
+
         answerData.push({
-          index: this.state.subject.cards.indexOf(
-                   this.state.subject.cards.filter(
-                     card => card.prompt === questions[i].querySelector("p").innerHTML)),
+          answers,
           correct: this.gradeMCquestion(questions[i]),
-          type: "multipleChoice"
+          correctAnswer,
+          type: "multipleChoice",
+          selected
         })
       } else if(questions[i].classList.contains("textResponce")) {
         answerData.push({
           index: this.state.subject.cards.indexOf(
                    this.state.subject.cards.filter(
-                     card => card.prompt === questions[i].querySelector("p").innerHTML)),
+                     card => {card.prompt === questions[i].querySelector(".prompt").innerHTML})[0]),
           correct: this.gradeFRquestion(questions[i]),
           type: "textResponce"
         })
       }
     }
-    console.log(document.getElementById("questions"))
     // this.setState({questionElements: document.getElementById("questions")})
-    this.setState({answerData})
+    this.state.answerData = answerData
+    this.setState({graded: true});
+
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.gradeTest()
+    this.gradeTest();
+    this.generateTest();
   }
 
   render() {
@@ -180,6 +224,7 @@ export default class SubjectTest extends Component {
         <Redirect to="/app/subjects"></Redirect>
       )
     }
+    console.log("render")
     if(this.state.showResults) {
       return(
         <Redirect to={{pathname: "/app/subjects/" + this.state.subject.name + "/test/grade",
@@ -195,11 +240,11 @@ export default class SubjectTest extends Component {
           <div id="questions">
             { this.state.questionElements }
           </div>
-          <div className="cf">
+          {!this.state.graded && (<div className="cf">
             <button className="button" type="submit">
               submit
             </button>
-          </div>
+          </div>)}
         </form>
       </div>
     )
