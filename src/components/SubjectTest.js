@@ -77,7 +77,6 @@ export default class SubjectTest extends Component {
   generateTest() {
 
     function frQuestion(key, question, corrrect = "", value = "") {
-      console.log(question)
       return (
         <div key={ key } className={"question textResponce " + corrrect}>
           <p className="prompt">{ question.prompt }</p>
@@ -98,7 +97,6 @@ export default class SubjectTest extends Component {
         let configQs = getRandom(this.state.subject.cards,
                                  parseInt(this.state.questions.multipleChoice, 10) +
                                  parseInt(this.state.questions.textResponce, 10))
-        console.log(configQs)
         let MCquestions = configQs.slice(0, this.state.questions.multipleChoice);
 
         let FRquestions = configQs.slice(this.state.questions.multipleChoice,
@@ -239,7 +237,7 @@ export default class SubjectTest extends Component {
       }
     }
     api.setSubject(this.state.subject.name, this.state.subject);
-
+    api.saveLocalSorage()
     this.state.answerData = answerData
     this.setState({graded: true});
 
@@ -257,7 +255,6 @@ export default class SubjectTest extends Component {
         <Redirect to="/app/subjects"></Redirect>
       )
     }
-    console.log("render")
     if(this.state.showResults) {
       return(
         <Redirect to={{pathname: "/app/subjects/" + this.state.subject.name + "/test/grade",
