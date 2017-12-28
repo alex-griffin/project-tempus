@@ -471,7 +471,9 @@ const api = {
     }
     if(index !== null) this.subjects.splice(index, 1);
     this.saveLocalSorage()
-  }
+  },
+
+
 }
 
 export default api;

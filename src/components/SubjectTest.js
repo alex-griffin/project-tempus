@@ -180,15 +180,28 @@ export default class SubjectTest extends Component {
           }
           return ""
         });
+
         let selected = Array.from(radios).indexOf(Array.from(radios).filter((radio) => {
           return radio.checked
         })[0])
 
         let correctAnswer = Array.from(radios).indexOf(Array.from(radios).filter((radio) => {
           return radio.value === "true"
-        })[0])
-        console.log(answers)
+        })[0]);
 
+        let cardIndex = this.state.subject.cards.indexOf(
+          this.state.subject.cards.filter((card) => {
+            return questions[i].querySelector("p").innerHTML === card.prompt
+          })[0]
+        )
+
+        console.log(this.state.subject.cards[cardIndex])
+        if(selected === correctAnswer) {
+          this.state.subject.cards[cardIndex].correct++
+        }
+        this.state.subject.cards[cardIndex].attempted++
+        console.log(this.state.subject);
+        console.log(api.getName(this.state.subject.name))
         answerData.push({
           answers,
           correct: this.gradeMCquestion(questions[i]),
@@ -206,7 +219,8 @@ export default class SubjectTest extends Component {
         })
       }
     }
-    // this.setState({questionElements: document.getElementById("questions")})
+    api.setSubject(this.state.subject.name, this.state.subject);
+
     this.state.answerData = answerData
     this.setState({graded: true});
 
