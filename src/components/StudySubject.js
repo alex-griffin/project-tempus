@@ -38,12 +38,20 @@ class StudySubject extends Component {
         )
       } else {
         flashCard = (
-          <div className="flashCard">
-
-            <h1>{ card.prompt }</h1>
-            <h1>{ card.answer }</h1>
+          <div className="flashcards">
+            <div className="cardContainer">
+              <div className="flashCard">
+                <div className="innerCard">
+                  <h1>{ card.prompt }</h1>
+                </div>
+              </div>
+            </div>
+            {/* <div className="flashCard">
+              <h1>{ card.answer }</h1>
+            </div> */}
 
           </div>
+
         )
       }
 
