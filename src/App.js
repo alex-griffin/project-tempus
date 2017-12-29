@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 import Header from "./components/Header.js"
 import NotFound from "./components/NotFound.js"
@@ -33,10 +34,10 @@ class App extends Component {
               <Route path="/app/subjects/test/configure" component={ TestConfigure } />
               <Route path="/app/subjects/:subject/edit" exact component={ EditSubject } />
               <Route path="/app/subjects/:subject/test" exact component={ SubjectTest } />
+              <Route path="/app/subjects/:subject/study/:card" exact render={(props) => <StudySubject {...props}/> } />
               <Route path="/app/subjects/:subject/study" exact render={({ match }) => (
                 <Redirect to={"/app/subjects/" + match.params.subject + "/study/0"}></Redirect>
               )} />
-              <Route path="/app/subjects/:subject/study/:card" exact component={ StudySubject } />
 
               <Route path="/app/subjects/:subject" exact component={ Subject } />
               <Route path="*" component={ NotFound } />
