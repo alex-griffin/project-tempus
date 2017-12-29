@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Redirect, Link } from "react-router-dom"
 import api from "../services/api.js"
-const queryString = require('query-string');
+import AnswerResults from "./AnswerResults"
 
 function getRandom(arr, n, not = -1) {
   let result = arr.reduce((acc, cur, i) => {
@@ -255,17 +255,12 @@ export default class SubjectTest extends Component {
         <Redirect to="/app/subjects"></Redirect>
       )
     }
-    if(this.state.showResults) {
-      return(
-        <Redirect to={{pathname: "/app/subjects/" + this.state.subject.name + "/test/grade",
-                       state: {
-                         prevTest: this.state.questionElements,
-                         answers:  this.state.answerData
-                       }}}></Redirect>
-      )
-    }
+
     return (
       <div id="test">
+        {this.state.answerData &&
+          <AnswerResults answerData={this.state.answerData}
+                         subject={this.state.subject}></AnswerResults>}
         <form onSubmit={this.handleSubmit.bind(this)} className="questions">
           <div id="questions">
             { this.state.questionElements }

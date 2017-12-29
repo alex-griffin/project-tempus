@@ -408,3 +408,16 @@ html, body {
 
 body.ofh {
   overflow: hidden; }
+
+.answerResults {
+  margin: 64px 0 16px;
+  padding: 16px;
+  background-color: #fdfdfd; }
+  .answerResults h1 {
+    text-align: center; }
+    .answerResults h1.green {
+      color: #2ecc71; }
+    .answerResults h1.yellow {
+      color: #f39c12; }
+    .answerResults h1.red {
+      color: #e74c3c; }

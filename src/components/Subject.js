@@ -51,11 +51,11 @@ export default class Subject extends Component{
                         icon="edit"
                         text="edit"/>
             </Link>
-            <Link to="/app/subjects/" onClick={this.deleteSelf.bind(this)}>
+            <Link to={"/app/subjects/" + this.state.subject.name + "/study"}>
               <Minicard className="action"
                         size={ cardSize }
-                        icon="delete_forever"
-                        text="delete"/>
+                        icon="school"
+                        text="study"/>
             </Link>
             <Link to={{
                        pathname: "/app/subjects/test/configure",
@@ -66,6 +66,13 @@ export default class Subject extends Component{
                         icon="assignment"
                         text="test"/>
             </Link>
+            <Link to="/app/subjects/" onClick={this.deleteSelf.bind(this)}>
+              <Minicard className="action"
+                        size={ cardSize }
+                        icon="delete_forever"
+                        text="delete"/>
+            </Link>
+
           </div>
         </div>
         <ul className="questions">
