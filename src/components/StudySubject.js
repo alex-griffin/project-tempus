@@ -22,7 +22,7 @@ class StudySubject extends Component {
   flipCard(e, event) {
     e = e.target || e
 
-    if(event && (!event.keyCode || (event.keyCode && event.keyCode === 32))) {
+    if(!event || (event && (!event.keyCode || (event.keyCode && event.keyCode === 32)))) {
       e.classList.toggle("flipped")
     }
 
