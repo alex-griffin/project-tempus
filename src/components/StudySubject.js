@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Link, Redirect } from "react-router-dom"
-import {withRouter} from "react-router"
+import { withRouter } from "react-router"
+import Sorry from "./Sorry.js"
 import api from "../services/api.js"
 
 
@@ -19,18 +20,17 @@ class StudySubject extends Component {
     this.setState({subject: api.getName(next.match.params.subject)})
   }
 
-  flipCard(e, event) {
-    e = e.target || e
+  flipCard(e, element) {
 
-    if(!event || (event && (!event.keyCode || (event.keyCode && event.keyCode === 32)))) {
-      e.classList.toggle("flipped")
+    if(!e || (e && (!e.keyCode || (e.keyCode && e.keyCode === 32)))) {
+      let target = element || e.target
+      target.classList.toggle("flipped")
     }
-
   }
 
   componentWillMount() {
     this.keyDownListener = document.addEventListener("keydown", (e) => {
-      this.flipCard(document.getElementById("cardContainer"), e)
+      this.flipCard(e, document.getElementById("cardContainer"))
     })
   }
 
@@ -49,10 +49,7 @@ class StudySubject extends Component {
       if(!card) {
         flashCard = (
           <div className="invalid">
-            <p className="sorry">
-              <p className="sorry">¯\_(ツ)_/¯ <br/> invalid card number</p>
-
-            </p>
+            <Sorry>Invalid Card number index</Sorry>
           </div>
         )
       } else {

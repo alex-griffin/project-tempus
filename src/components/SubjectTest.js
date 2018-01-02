@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { Redirect, Link } from "react-router-dom"
 import api from "../services/api.js"
-import AnswerResults from "./AnswerResults"
+import AnswerResults from "./AnswerResults.js"
+import Sorry from "./Sorry.js"
 
 function getRandom(arr, n, not = -1) {
   let result = arr.reduce((acc, cur, i) => {
@@ -152,10 +153,7 @@ export default class SubjectTest extends Component {
       this.setState({ questionElements: questions })
     } else {
       return (
-        <h1 className="sorry">
-          ¯\_(ツ)_/¯ <br/>
-          Invalid Test or subject
-        </h1>
+        <Sorry>Invalid test or subject</Sorry>
       )
     }
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import SubjectCard from "./SubjectCard.js"
+import Sorry from "./Sorry.js"
 import api from "../services/api.js"
 
 export default class Home extends Component {
@@ -44,7 +45,7 @@ export default class Home extends Component {
     });
     if(!cards.length) {
       cards = (
-        <p className="sorry">¯\_(ツ)_/¯ <br/> We found no subjects that match that search</p>
+        <Sorry>We found no subjects that match that search</Sorry>
       )
     }
     return (
