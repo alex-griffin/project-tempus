@@ -1,6 +1,5 @@
 #study
   display: block
-  overflow: hidden
   .flashcards
     margin: 16px auto
     display: flex
@@ -14,17 +13,46 @@
       left: 0
       bottom: 0
       height: 100%
-      width: 100%
+      max-width: 720px
+      width: 90%
       margin: 32px auto
+      perspective: 1000px
+      &.flipped
+        .flashCard
+          transform: rotateY(180deg)
+
       .flashCard
         background-color: $white
-        max-width: 720px
         text-align: center
         margin: 0 auto
-        width: 90%
+        width: 100%
+        transform-style: preserve-3d
+        pointer-events: none
+        +transition(0.9s)
         +aspectRatio(16 9, "&::after")
+
         .innerCard
           position: absolute
+          top: 0
+          left: 0
+          height: 100%
+          width: 100%
+          .side
+            height: 100%
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+            background-color: #fff
+          .front
+            z-index: 2
+            transform: rotateY(0deg)
+            position: absolute
+            top: 0
+            left: 0
+            backface-visibility: hidden
+          .back
+            transform: rotateY(180deg)
   footer
     position: fixed
     bottom: 0
@@ -38,6 +66,7 @@
       height: 32px
       width: 52px
       margin: 4px
+      background-color: $white
       i
         vertical-align: middle
   .sorry
@@ -45,4 +74,4 @@
     color: $grey
     text-align: center
     font-size: 32px
-    margin: 32px 0
+    margin: 64px 0

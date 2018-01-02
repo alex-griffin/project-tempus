@@ -29,7 +29,7 @@ class MCQuestion extends Component {
   render() {
     let question = this.state.answers.map((item, i) => {
       return (
-        <div className="answer" key={i}>
+        <div className="answer" key={ i }>
           <label className="answerOption">
             <input name={ this.state.answers[this.state.correctAnswer].prompt }
                    value={ i === this.state.correctAnswer }

@@ -423,8 +423,7 @@ body.ofh {
       color: #e74c3c; }
 
 #study {
-  display: block;
-  overflow: hidden; }
+  display: block; }
   #study .flashcards {
     margin: 16px auto;
     display: flex;
@@ -438,17 +437,22 @@ body.ofh {
       left: 0;
       bottom: 0;
       height: 100%;
-      width: 100%;
-      margin: 32px auto; }
+      max-width: 720px;
+      width: 90%;
+      margin: 32px auto;
+      perspective: 1000px; }
+      #study .flashcards .cardContainer.flipped .flashCard {
+        transform: rotateY(180deg); }
       #study .flashcards .cardContainer .flashCard {
         background-color: #fdfdfd;
-        max-width: 720px;
         text-align: center;
         margin: 0 auto;
-        width: 90%;
+        width: 100%;
+        transform-style: preserve-3d;
+        pointer-events: none;
+        transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
         padding-bottom: 56.25%;
-        position: relative;
-          position-height: 0; }
+        position: relative; }
         #study .flashcards .cardContainer .flashCard::after {
           left: 0;
           height: 100%;
@@ -456,7 +460,27 @@ body.ofh {
           top: 0;
           width: 100%; }
         #study .flashcards .cardContainer .flashCard .innerCard {
-          position: absolute; }
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%; }
+          #study .flashcards .cardContainer .flashCard .innerCard .side {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff; }
+          #study .flashcards .cardContainer .flashCard .innerCard .front {
+            z-index: 2;
+            transform: rotateY(0deg);
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden; }
+          #study .flashcards .cardContainer .flashCard .innerCard .back {
+            transform: rotateY(180deg); }
   #study footer {
     position: fixed;
     bottom: 0;
@@ -469,7 +493,8 @@ body.ofh {
     #study footer button {
       height: 32px;
       width: 52px;
-      margin: 4px; }
+      margin: 4px;
+      background-color: #fdfdfd; }
       #study footer button i {
         vertical-align: middle; }
   #study .sorry {
@@ -477,4 +502,4 @@ body.ofh {
     color: #757575;
     text-align: center;
     font-size: 32px;
-    margin: 32px 0; }
+    margin: 64px 0; }
